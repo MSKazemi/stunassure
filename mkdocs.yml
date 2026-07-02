@@ -1,0 +1,61 @@
+site_name: StunAssure
+site_description: >-
+  Fail-safe verification stack for humane fish stunning and slaughter —
+  simulate → verify → certify → report.
+site_author: Responsible Systems Lab
+repo_url: https://github.com/MSKazemi/stunassure
+repo_name: MSKazemi/stunassure
+copyright: Copyright &copy; 2026 Responsible Systems Lab
+
+theme:
+  name: material
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: teal
+      accent: teal
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: teal
+      accent: teal
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.sections
+    - navigation.top
+    - content.code.copy
+    - toc.follow
+    - search.suggest
+
+nav:
+  - Home: index.md
+  - Architecture: architecture.md
+  - HTTP API: api.md
+  - Deployment:
+      - Azure: deployment/azure.md
+      - AWS: deployment/aws.md
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+
+plugins:
+  - search
