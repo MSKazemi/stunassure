@@ -6,7 +6,8 @@ you need HTTP (a dashboard, a certifier export, fleet aggregation). The core its
 ```bash
 pip install 'stunassure[api]'
 uvicorn stunassure.api:app --port 8000
-# Interactive OpenAPI docs: http://localhost:8000/docs
+# Web dashboard:          http://localhost:8000/ui/   (/ redirects here)
+# Interactive OpenAPI UI: http://localhost:8000/docs
 ```
 
 The API is a **transport, not a second decision path** — it calls the same core and cannot weaken
@@ -22,6 +23,23 @@ the fail-safe contract.
 | `POST` | `/verify` | Verify a single stun event → `PASS` / `UNCERTAIN` / `FAIL` |
 | `POST` | `/reports` | Verify a batch sample + certify the lot → signed report |
 | `POST` | `/reports/verify` | Check a report's SHA-256 signature (tamper detection) |
+| `POST` | `/demo` | Simulate + verify + certify a batch → signed report (mirrors the CLI demo) |
+| `GET` | `/ui/` | The web dashboard (see below); `/` redirects here |
+
+## Web dashboard
+
+Once the API is running, open **<http://localhost:8000/ui/>** (or just `/`, which redirects) for a
+zero-build, single-file dashboard that talks to the endpoints above:
+
+- **Verify one event** — a form that shows the fail-safe verdict and every layer's reason,
+  colour-coded PASS / UNCERTAIN / FAIL.
+- **Certify a batch** — pick a species, lot size, and injected failure rate; it calls `/demo`,
+  shows the certification banner + verdict counts, then lets you **verify the signature**, run a
+  **tamper test**, and **download the signed JSON**.
+- **Species library** — the cited threshold table, flagging species with no published spec.
+
+The dashboard is a client only — it cannot bypass or weaken the verdict, which is always computed
+by the core.
 
 ## Examples
 

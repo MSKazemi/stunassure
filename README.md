@@ -96,10 +96,22 @@ curl -s localhost:8000/verify -H 'content-type: application/json' -d '{
 
 Full endpoint reference: [`docs/api.md`](docs/api.md).
 
+## Web dashboard
+
+The API ships a zero-build, single-file dashboard. Start the server and open
+**<http://localhost:8000/ui/>** (or just `/`):
+
+- **Verify one event** — form → colour-coded PASS / UNCERTAIN / FAIL with every layer's reason.
+- **Certify a batch** — pick species / lot / failure rate → certification banner, verdict counts,
+  a one-click **signature check**, a **tamper test**, and **download the signed JSON**.
+- **Species library** — the cited threshold table, flagging species with no published spec.
+
+It is a client only — the verdict is always computed by the core, never in the browser.
+
 ## Run with Docker
 
 ```bash
-docker compose up --build      # API on http://localhost:8000
+docker compose up --build      # API + dashboard on http://localhost:8000
 ```
 
 ---
@@ -181,9 +193,9 @@ Makefile             dev shortcuts
 - **Is:** an end-to-end, fail-safe verification core — coherent logic, an audit artifact, an
   optional API, and costed cloud deployment paths — provable with **zero hardware and zero live fish**.
 - **Isn't (yet):** the ESP32 inline field/conductivity logger firmware + BOM; the contact
-  evoked-response ("Echo-Stun") signal-processing module (needs bench data + a welfare advisor); a
-  web dashboard. Several species figures are tagged `needs-primary` in `species.py` and must be
-  traced to primary sources before any external numeric claim.
+  evoked-response ("Echo-Stun") signal-processing module (needs bench data + a welfare advisor); an
+  AI/visual risk-detection layer. Several species figures are tagged `needs-primary` in `species.py`
+  and must be traced to primary sources before any external numeric claim.
 
 ## Contributing
 

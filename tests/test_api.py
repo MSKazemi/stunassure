@@ -119,6 +119,44 @@ def test_reports_certify_and_signature_roundtrip() -> None:
     assert rv2.json() == {"valid": False}
 
 
+def test_demo_clean_batch_certifies() -> None:
+    r = client.post(
+        "/demo",
+        json={"species_key": "atlantic_salmon", "lot_size": 50000, "failure_rate": 0.0},
+    )
+    assert r.status_code == 200
+    report = r.json()
+    assert report["certification"]["accepted"] is True
+    assert report["summary"]["fail"] == 0
+
+
+def test_demo_failing_batch_rejected() -> None:
+    r = client.post(
+        "/demo",
+        json={"species_key": "atlantic_salmon", "lot_size": 50000, "failure_rate": 0.30},
+    )
+    assert r.status_code == 200
+    assert r.json()["certification"]["accepted"] is False
+
+
+def test_demo_unknown_species_404() -> None:
+    r = client.post("/demo", json={"species_key": "nope"})
+    assert r.status_code == 404
+
+
+def test_root_redirects_to_ui() -> None:
+    r = client.get("/", follow_redirects=False)
+    assert r.status_code in (307, 308)
+    assert r.headers["location"] == "/ui/"
+
+
+def test_ui_index_served() -> None:
+    r = client.get("/ui/")
+    assert r.status_code == 200
+    assert "StunAssure" in r.text
+    assert "verification dashboard" in r.text
+
+
 def test_reports_unknown_species_404() -> None:
     r = client.post(
         "/reports",

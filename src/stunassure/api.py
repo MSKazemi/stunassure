@@ -14,16 +14,22 @@ Endpoints (see ``docs/api.md``):
 * ``POST /verify``                — verify a single stun event → PASS / UNCERTAIN / FAIL
 * ``POST /reports``               — verify a batch sample + certify the lot → signed report
 * ``POST /reports/verify``        — check a report's SHA-256 signature (tamper detection)
+* ``POST /demo``                  — simulate + verify + certify a batch → signed report (CLI parity)
+* ``GET  /ui/``                   — the static web dashboard (a client of the endpoints above)
 
-The API never weakens the fail-safe contract: it is a transport, not a second decision path.
+The API never weakens the fail-safe contract: it is a transport, not a second decision path. The
+dashboard is a client only — the verdict is always computed by the core.
 """
 
 from __future__ import annotations
 
+from pathlib import Path
 from typing import Any
 
 try:
     from fastapi import FastAPI, HTTPException
+    from fastapi.responses import RedirectResponse
+    from fastapi.staticfiles import StaticFiles
     from pydantic import BaseModel, Field
 except ModuleNotFoundError as exc:  # pragma: no cover - exercised via import guard test
     raise ModuleNotFoundError(
@@ -34,6 +40,10 @@ except ModuleNotFoundError as exc:  # pragma: no cover - exercised via import gu
 from . import __version__, species
 from .engine import StunEvent, verify
 from .report import build_report, verify_report
+from .sampling import design_plan
+from .simulator import simulate_batch
+
+_WEB_DIR = Path(__file__).parent / "web"
 
 app = FastAPI(
     title="StunAssure API",
@@ -91,6 +101,25 @@ class ReportRequest(BaseModel):
     generated_at: str = Field(
         description="ISO-8601 timestamp; passed in for deterministic, reproducible signatures.",
         examples=["2026-06-19T12:00:00Z"],
+    )
+
+
+class DemoRequest(BaseModel):
+    """Generate a reproducible synthetic batch, verify + certify it, and return a signed report.
+
+    This mirrors the ``stunassure demo`` CLI and lets the dashboard exercise the whole stack with
+    zero hardware and zero live fish.
+    """
+
+    species_key: str = Field(default="atlantic_salmon", examples=["atlantic_salmon"])
+    lot_size: int = Field(default=50000, gt=0)
+    seed: int = 1
+    failure_rate: float = Field(default=0.0, ge=0.0, le=1.0)
+    aql: float = Field(default=0.065, gt=0.0, lt=1.0)
+    target_confidence: float = Field(default=0.95, gt=0.0, lt=1.0)
+    generated_at: str = Field(
+        default="2026-06-19T12:00:00Z",
+        description="ISO-8601 timestamp; passed in for deterministic, reproducible signatures.",
     )
 
 
@@ -183,3 +212,33 @@ def create_report(req: ReportRequest) -> dict[str, Any]:
 def check_report(report: dict[str, Any]) -> SignatureCheck:
     """Return whether a report's SHA-256 signature matches its content (tamper detection)."""
     return SignatureCheck(valid=verify_report(report))
+
+
+@app.post("/demo", tags=["reports"])
+def run_demo(req: DemoRequest) -> dict[str, Any]:
+    """Simulate a batch, verify + certify it, and return a signed report (mirrors the CLI demo)."""
+    if species.get_profile(req.species_key) is None:
+        raise HTTPException(status_code=404, detail=f"unknown species '{req.species_key}'")
+    plan = design_plan(req.lot_size, req.aql, req.target_confidence)
+    sample = simulate_batch(
+        req.species_key, n=plan.sample_size, seed=req.seed, failure_rate=req.failure_rate
+    )
+    return build_report(
+        species_key=req.species_key,
+        sample_events=sample,
+        lot_size=req.lot_size,
+        aql=req.aql,
+        target_confidence=req.target_confidence,
+        generated_at=req.generated_at,
+    )
+
+
+# --------------------------------------------------------------------------- static dashboard
+# A dependency-free, single-file UI that talks to the API above. The dashboard is a client only —
+# it cannot bypass or weaken the fail-safe verdict, which is always computed by the core.
+@app.get("/", include_in_schema=False)
+def _root() -> RedirectResponse:
+    return RedirectResponse(url="/ui/")
+
+
+app.mount("/ui", StaticFiles(directory=str(_WEB_DIR), html=True), name="ui")
