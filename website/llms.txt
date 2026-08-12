@@ -1,0 +1,36 @@
+# Responsible Systems Lab
+
+> A small, independent, early-stage research initiative building responsible technology systems for safer, more humane, and more accountable futures. Not a registered company, nonprofit, or foundation — an informal interdisciplinary project group. Current project: StunAssure.
+
+## About
+- Responsible Systems Lab works on responsible AI, sensing, automation, verification, risk detection, and welfare-aware systems for real-world environments affecting people, children, animals, and ecosystems.
+- Tagline: "Technology with responsibility built in."
+- Contact: contact@responsiblesystemslab.org
+
+## Current project: StunAssure
+- StunAssure is a low-cost, explainable verification and risk-detection layer that helps fish farms and processors detect, document, and reduce welfare risks during stunning and slaughter.
+- It does NOT claim that software alone can determine consciousness; it surfaces observable welfare-risk indicators and routes uncertain cases to expert review.
+
+## Approach: the verification stack
+- StunAssure is structured as a fail-safe "verification stack": measure the electrical stun physically, verify insensibility, enforce the wake-before-death recovery window, and certify each batch statistically (importing ISO 2859 acceptance sampling).
+- A working, tested software core runs this logic on simulated data; an interactive in-browser demo reproduces it. Heartbeat is explicitly rejected as an insensibility signal (the fish heart is myogenic).
+
+## Key facts (cited, for accurate citation)
+- ~124 billion farmed finfish are killed per year (range 78–171 bn; Mood et al. 2023, Animal Welfare); only ~0.5% are reliably stunned before killing (welfare-sector estimate).
+- Electrical stunning is reversible: Atlantic salmon can show EEG recovery signs from ~44 s after the current stops (EFSA 2009). The only concrete verification interval in any standard is RSPCA Assured's ≤15 s stun-to-bleed requirement.
+- There is no published, measured electrical-stunning specification for gilthead sea bream — parameters are borrowed from European sea bass. Closing per-species calibration gaps is core to StunAssure.
+- Standards point the right way but stop short on fish: WOAH Aquatic Code Ch. 7.3 requires stun-before-kill but gives no numeric interval; EU 1099/2009 applies only a general duty to fish; RSPCA Assured requires CCTV over the whole slaughter process from 22 July 2025.
+- Cost leverage: a sub-$100 inline stun-dose logger rides on top of existing ~€150k in-water stunners — verification as a cheap layer over hardware already in place.
+- The State-of-the-Art page cites 17 primary sources (EFSA opinions, Lines & Kestin 2004, Lambooij et al., Clemente et al. 2023, de la Rosa et al. 2021, and more).
+
+## Key pages
+- Home: https://responsiblesystemslab.org/
+- StunAssure (overview): https://responsiblesystemslab.org/stunassure.html
+- Live interactive demo: https://responsiblesystemslab.org/demo.html
+- Architecture (the verification stack): https://responsiblesystemslab.org/architecture.html
+- Hardware design (BOMs, devices): https://responsiblesystemslab.org/hardware.html
+- Approach & technology: https://responsiblesystemslab.org/approach.html
+- State of the art: https://responsiblesystemslab.org/state-of-the-art.html
+- Responsible AI (what we do and do not claim): https://responsiblesystemslab.org/responsible-ai.html
+- Roadmap: https://responsiblesystemslab.org/roadmap.html
+- Team: https://responsiblesystemslab.org/team.html
