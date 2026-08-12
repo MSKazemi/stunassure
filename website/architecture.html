@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Architecture — StunAssure verification stack</title>
+<meta name="description" content="The StunAssure verification-stack architecture: measure the stun physically, verify insensibility, enforce the recovery window, and certify the batch statistically — fail-safe, explainable, offline-first." />
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2.5' y='2.5' width='27' height='27' rx='9' fill='none' stroke='%231F6F6D' stroke-width='1.6'/%3E%3Cpath d='M9 13.2l3.4 3.4L20 8.8' fill='none' stroke='%231F6F6D' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M8.5 21c2-2.2 4.5-2.2 6.5 0s4.5 2.2 6.5 0' fill='none' stroke='%233BAAA6' stroke-width='1.8' stroke-linecap='round'/%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles/site.css?v=20260619" />
+<link rel="canonical" href="https://responsiblesystemslab.org/architecture.html" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Responsible Systems Lab" />
+<meta property="og:title" content="Architecture — StunAssure verification stack" />
+<meta property="og:description" content="Measure the stun, verify insensibility, enforce the recovery window, certify the batch — fail-safe by design." />
+<meta property="og:url" content="https://responsiblesystemslab.org/architecture.html" />
+<meta property="og:image" content="https://responsiblesystemslab.org/assets/og-stunassure.png" />
+</head>
+<body>
+
+<header class="site-header" id="header">
+  <div class="container nav">
+    <a class="brand" href="stunassure.html">
+      <img src="assets/logo-primary.png" alt="StunAssure logo" />
+      <span>StunAssure<small>A Responsible Systems Lab project</small></span>
+    </a>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="stunassure.html">Home</a></li>
+        <li><a href="approach.html">Approach</a></li>
+        <li><a href="demo.html">Demo</a></li>
+        <li><a href="architecture.html">Architecture</a></li>
+        <li><a href="hardware.html">Hardware</a></li>
+        <li><a href="state-of-the-art.html">State of the art</a></li>
+        <li><a href="roadmap.html">Roadmap</a></li>
+        <li><a href="team.html">Team</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn-outline nav-cta" href="team.html#contact">Collaborate</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<main id="top">
+
+<section class="page-hero">
+  <div class="container">
+    <div class="crumbs"><a href="stunassure.html">StunAssure</a> → Architecture</div>
+    <span class="eyebrow">System architecture</span>
+    <h1>Measure. Verify. Enforce. <em>Certify.</em></h1>
+    <p>StunAssure is not a camera that guesses. It is a fail-safe verification stack re-anchored on the physics of stunning — four layers, each closing a gap where the science exists but the verification layer does not.</p>
+  </div>
+</section>
+
+<!-- THESIS -->
+<section id="thesis">
+  <div class="container">
+    <div class="statement reveal">
+      <span class="eyebrow">The shift</span>
+      <h2>From “monitor &amp; report” to <em>verify &amp; certify</em>.</h2>
+      <p>The crowded approach films fish and infers welfare from movement — but a fish can be immobile and still conscious. StunAssure instead <strong>measures the stun physically, verifies insensibility, enforces the wake-before-death window, and certifies the batch statistically.</strong> Each layer fills a field/translation gap: low scientific risk, high implementation novelty.</p>
+    </div>
+  </div>
+</section>
+
+<!-- THE FOUR LAYERS -->
+<section id="layers" class="section-alt">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">The four layers</span>
+      <h2>Decided in order, aggregated conservatively.</h2>
+      <p>The worst layer dominates the verdict — we never average a failure away. Anything not positively confirmed is <strong>UNCERTAIN → manual check</strong>, never a pass.</p>
+    </div>
+
+    <ol class="flow-ribbon reveal">
+      <li>Dose</li><li>Recovery-clock</li><li>Echo-Stun</li><li>Welfare-by-Sampling</li>
+    </ol>
+
+    <ul class="steps reveal">
+      <li class="step">
+        <div class="step-top"><span class="step-no">01</span><span class="step-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M13 2L4 14h6l-1 8 9-12h-6z" stroke-linejoin="round"/></svg></span></div>
+        <h3>Dose</h3>
+        <p class="what">Was an adequate electrical dose delivered? Field strength × duration vs the cited species spec, interpreted through water conductivity.</p>
+        <p class="why"><span>Ready now</span> Cheap inline logger; no species spec (sea bream) → UNCERTAIN, never invented.</p>
+      </li>
+      <li class="step">
+        <div class="step-top"><span class="step-no">02</span><span class="step-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l3 2M12 2h0" stroke-linecap="round"/></svg></span></div>
+        <h3>Recovery-clock</h3>
+        <p class="what">Was the fish bled before it could wake? Electrical stunning is reversible — salmon can recover from ~44&nbsp;s. We time stun→bleed against a cited per-species threshold.</p>
+        <p class="why"><span>Ready now</span> The hazard nobody logs today; RSPCA mandates ≤15&nbsp;s stun-to-bleed.</p>
+      </li>
+      <li class="step">
+        <div class="step-top"><span class="step-no">03</span><span class="step-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M2 12h4l2-6 4 14 3-9 2 4h5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+        <h3>Echo-Stun <em style="font-size:.7rem;color:var(--sky);font-style:normal;letter-spacing:.08em;text-transform:uppercase">optional</em></h3>
+        <p class="what">A cheap electrical evoked-response “insensibility index” — the first low-cost proxy for lab-only EEG, modelled on the human BIS anesthesia monitor.</p>
+        <p class="why"><span>Research</span> Contact variant de-risked; never gates the cheaper tiers.</p>
+      </li>
+      <li class="step">
+        <div class="step-top"><span class="step-no">04</span><span class="step-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 19V5a2 2 0 0 1 2-2h11l3 3v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+        <h3>Welfare-by-Sampling</h3>
+        <p class="what">Certify a whole batch at stated confidence from a small validated subsample — importing ISO&nbsp;2859 acceptance sampling, which welfare auditing has never used.</p>
+        <p class="why"><span>Ready now</span> EU law leaves welfare sampling ad hoc; this gives a defensible confidence statement.</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- DATA FLOW -->
+<section id="flow">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Data flow</span>
+      <h2>Edge inputs → conservative engine → signed record.</h2>
+      <p>Verification logic has zero runtime dependencies — it runs on a Raspberry&nbsp;Pi or a phone, offline, not only in the cloud.</p>
+    </div>
+    <div class="diagram-wrap reveal">
+      <svg viewBox="0 0 1000 300" role="img" aria-label="StunAssure data-flow diagram">
+        <defs>
+          <marker id="ah" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0 0L9 4.5L0 9z" fill="#1F6F6D"/></marker>
+          <style>
+            .bx{fill:#fff;stroke:#D9E6E3;stroke-width:1.5;rx:12}
+            .bxd{fill:#0D3B3E}
+            .tt{font:600 14px Inter,sans-serif;fill:#102A2C}
+            .ttw{font:600 14px Inter,sans-serif;fill:#fff}
+            .sb{font:500 11px Inter,sans-serif;fill:#5D7073}
+            .sbw{font:500 11px Inter,sans-serif;fill:#A8D5CF}
+            .ln{stroke:#1F6F6D;stroke-width:1.8;fill:none}
+          </style>
+        </defs>
+        <!-- inputs -->
+        <rect class="bx" x="20" y="40" width="200" height="92" rx="12"/>
+        <text class="tt" x="36" y="68">Edge inputs (offline)</text>
+        <text class="sb" x="36" y="90">field · duration · freq</text>
+        <text class="sb" x="36" y="108">conductivity · stun→bleed</text>
+        <text class="sb" x="36" y="126">+ optional Echo-Stun probe</text>
+        <!-- species lib -->
+        <rect class="bx" x="20" y="168" width="200" height="74" rx="12"/>
+        <text class="tt" x="36" y="196">Species library</text>
+        <text class="sb" x="36" y="216">cited recovery</text>
+        <text class="sb" x="36" y="232">+ dose thresholds</text>
+        <!-- engine -->
+        <rect class="bxd" x="300" y="84" width="220" height="120" rx="14"/>
+        <text class="ttw" x="320" y="116">Verification engine</text>
+        <text class="sbw" x="320" y="140">dose · recovery-clock</text>
+        <text class="sbw" x="320" y="158">· evoked-response</text>
+        <text class="sbw" x="320" y="182">→ PASS / UNCERTAIN / FAIL</text>
+        <!-- sampling -->
+        <rect class="bx" x="600" y="40" width="180" height="80" rx="12"/>
+        <text class="tt" x="618" y="68">Welfare-by-</text>
+        <text class="tt" x="618" y="88">Sampling (AQL)</text>
+        <text class="sb" x="618" y="108">lot certification</text>
+        <!-- manual -->
+        <rect class="bx" x="600" y="170" width="180" height="80" rx="12"/>
+        <text class="tt" x="618" y="198">Operator alert</text>
+        <text class="sb" x="618" y="220">+ expert review</text>
+        <text class="sb" x="618" y="238">(uncertain / fail)</text>
+        <!-- report -->
+        <rect class="bxd" x="850" y="104" width="130" height="92" rx="12"/>
+        <text class="ttw" x="868" y="138">Signed</text>
+        <text class="ttw" x="868" y="158">batch report</text>
+        <text class="sbw" x="868" y="180">SHA-256</text>
+        <!-- lines -->
+        <path class="ln" d="M220 86 H300" marker-end="url(#ah)"/>
+        <path class="ln" d="M220 200 H280 V150 H300" marker-end="url(#ah)"/>
+        <path class="ln" d="M520 120 H600 V100" marker-end="url(#ah)"/>
+        <path class="ln" d="M520 168 H560 V210 H600" marker-end="url(#ah)"/>
+        <path class="ln" d="M780 80 H820 V140 H850" marker-end="url(#ah)"/>
+        <path class="ln" d="M780 210 H820 V160 H850" marker-end="url(#ah)"/>
+      </svg>
+      <div class="flow-legend">
+        <span><i style="background:#0D3B3E"></i> conservative engine &amp; signed record</span>
+        <span><i style="background:#fff;border:1px solid #D9E6E3"></i> edge inputs &amp; certification</span>
+        <span><i style="background:#1F6F6D"></i> data flow</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAIL-SAFE CONTRACT -->
+<section id="failsafe" class="section-alt">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">The fail-safe contract</span>
+      <h2>A false “safe” is the dangerous error — so we engineer against it.</h2>
+    </div>
+    <div class="grid-2">
+      <div class="card reveal"><h3>Uncertainty never passes</h3><p>Missing or un-verifiable evidence is <strong>UNCERTAIN → manual check</strong>, never a pass. A species with no published electrical spec cannot be certified on dose.</p></div>
+      <div class="card reveal d1"><h3>The recovery window is hard</h3><p>If the stun→bleed interval exceeds the species recovery threshold, the verdict is <strong>FAIL</strong> — the fish risks waking before death.</p></div>
+      <div class="card reveal"><h3>The worst layer wins</h3><p>Layers aggregate conservatively. One failing layer fails the verdict; we never average a failure away into a comfortable middle.</p></div>
+      <div class="card reveal d1"><h3>Heartbeat is not a proxy</h3><p>The fish heart is myogenic — it beats for minutes after brain death — so a heartbeat is explicitly rejected as evidence of insensibility.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT'S BUILT -->
+<section id="built">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">From design to running code</span>
+      <h2>The core already exists — and it’s tested.</h2>
+      <p>The verification engine is a working, zero-dependency prototype. You can run it yourself in the <a href="demo.html">live demo</a>.</p>
+    </div>
+    <div class="tbl-wrap reveal">
+      <table class="dtable">
+        <thead><tr><th>Architecture component</th><th>Prototype module</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><th>Species threshold library (cited)</th><td>species.py</td><td><span class="verdict good">Built</span></td></tr>
+          <tr><th>Verification engine (dose · recovery · echo · aggregate)</th><td>engine.py</td><td><span class="verdict good">Built · tested</span></td></tr>
+          <tr><th>Welfare-by-Sampling (AQL)</th><td>sampling.py</td><td><span class="verdict good">Built · tested</span></td></tr>
+          <tr><th>Signed batch report (SHA-256)</th><td>report.py</td><td><span class="verdict good">Built · tested</span></td></tr>
+          <tr><th>Batch simulator / demo harness</th><td>simulator.py · cli.py</td><td><span class="verdict good">Built</span></td></tr>
+          <tr><th>Inline stun-dose + recovery logger</th><td>firmware (ESP32)</td><td><span class="verdict mixed">Design</span></td></tr>
+          <tr><th>Echo-Stun signal processing</th><td>evoked-response module</td><td><span class="verdict mixed">Research</span></td></tr>
+        </tbody>
+        <caption>Verification core: 49 automated tests, 94% coverage, type-checked. Hardware items are designed, not yet built.</caption>
+      </table>
+    </div>
+    <div class="hero-actions" style="margin-top:2rem">
+      <a class="btn btn-primary" href="demo.html">Run the live demo
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a class="btn btn-outline" href="hardware.html">The hardware design →</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer" id="contact">
+  <div class="container">
+    <div class="footer-cta reveal">
+      <h2>We're looking for welfare &amp; aquaculture collaborators.</h2>
+      <p>If you work in fish welfare, aquaculture, processing, or sensing — we'd value a short conversation about validating these indicators.</p>
+      <a class="btn btn-primary" href="mailto:contact@responsiblesystemslab.org">Get in touch
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16v12H4z M4 7l8 6 8-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+    <div class="footer-inner">
+      <div>
+        <div class="footer-brand"><span class="fmark" aria-hidden="true"><svg viewBox="0 0 36 36" fill="none"><rect x="1" y="1" width="34" height="34" rx="11" fill="#A8D5CF"/><path d="M10.5 16l4.2 4.2L24 10.8" stroke="#0D3B3E" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 24.5c2.7-2.9 5.6-2.9 8.3 0s5.6 2.9 8.3 0" stroke="#1F6F6D" stroke-width="2.2" stroke-linecap="round"/></svg></span> StunAssure</div>
+        <p class="disclaimer">A research-driven initiative exploring low-cost, explainable verification for fish-welfare risk management at slaughter. Supporting material, not a product offering.</p>
+      </div>
+      <div class="footer-cols">
+        <div>
+          <h4>Project</h4>
+          <ul>
+            <li><a href="approach.html">Approach &amp; technology</a></li>
+            <li><a href="demo.html">Live demo</a></li>
+            <li><a href="architecture.html">Architecture</a></li>
+            <li><a href="hardware.html">Hardware design</a></li>
+            <li><a href="state-of-the-art.html">State of the art</a></li>
+            <li><a href="responsible-ai.html">Responsible AI</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>More</h4>
+          <ul>
+            <li><a href="roadmap.html">Roadmap</a></li>
+            <li><a href="team.html">Team</a></li>
+            <li><a href="team.html#contact">Collaborate</a></li>
+            <li><a href="index.html">Responsible Systems Lab ↗</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 StunAssure project team.</span>
+      <span>Practical · fail-safe · evidence-informed.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="scripts/site.js"></script>
+</body>
+</html>

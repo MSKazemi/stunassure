@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>StunAssure — Welfare assurance for humane fish slaughter</title>
+<meta name="description" content="StunAssure is a research-driven initiative developing low-cost, explainable tools to detect, document, and reduce welfare risks during fish stunning and slaughter — starting with post-stun verification." />
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2.5' y='2.5' width='27' height='27' rx='9' fill='none' stroke='%231F6F6D' stroke-width='1.6'/%3E%3Cpath d='M9 13.2l3.4 3.4L20 8.8' fill='none' stroke='%231F6F6D' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M8.5 21c2-2.2 4.5-2.2 6.5 0s4.5 2.2 6.5 0' fill='none' stroke='%233BAAA6' stroke-width='1.8' stroke-linecap='round'/%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles/site.css?v=20260614b" />
+<link rel="canonical" href="https://responsiblesystemslab.org/stunassure.html" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Responsible Systems Lab" />
+<meta property="og:title" content="StunAssure — Welfare assurance for humane fish slaughter" />
+<meta property="og:description" content="StunAssure is a research-driven initiative developing low-cost, explainable tools to detect, document, and reduce welfare risks during fish stunning and slaughter — starting with post-stun verification." />
+<meta property="og:url" content="https://responsiblesystemslab.org/stunassure.html" />
+<meta property="og:image" content="https://responsiblesystemslab.org/assets/og-stunassure.png" />
+<meta property="og:image:width" content="1200" /><meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="StunAssure — Welfare assurance for humane fish slaughter" />
+<meta name="twitter:description" content="StunAssure is a research-driven initiative developing low-cost, explainable tools to detect, document, and reduce welfare risks during fish stunning and slaughter — starting with post-stun verification." />
+<meta name="twitter:image" content="https://responsiblesystemslab.org/assets/og-stunassure.png" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"ResearchProject","name":"StunAssure","url":"https://responsiblesystemslab.org/stunassure.html","description":"A low-cost, explainable verification and risk-detection layer that helps fish farms and processors detect, document, and reduce welfare risks during stunning and slaughter — without claiming to determine consciousness.","parentOrganization":{"@type":"Organization","name":"Responsible Systems Lab","url":"https://responsiblesystemslab.org/"}}
+</script>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="site-header" id="header">
+  <div class="container nav">
+    <a class="brand" href="stunassure.html">
+      <img src="assets/logo-primary.png" alt="StunAssure logo" />
+      <span>StunAssure<small>A Responsible Systems Lab project</small></span>
+    </a>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="stunassure.html">Home</a></li>
+        <li><a href="approach.html">Approach</a></li>
+        <li><a href="demo.html">Demo</a></li>
+        <li><a href="architecture.html">Architecture</a></li>
+        <li><a href="hardware.html">Hardware</a></li>
+        <li><a href="state-of-the-art.html">State of the art</a></li>
+        <li><a href="roadmap.html">Roadmap</a></li>
+        <li><a href="team.html">Team</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn-outline nav-cta" href="team.html#contact">Collaborate</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="hero">
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <span class="hero-tag reveal"><span class="dot"></span> A research-driven impact technology initiative</span>
+      <h1 class="reveal d1">Welfare assurance for humane fish <em>slaughter</em>.</h1>
+      <p class="hero-sub reveal d2">StunAssure is a low-cost, explainable platform that helps farms and processors <strong>detect, document, and reduce welfare risks</strong> during stunning and slaughter — starting with post-stun verification. We do not claim to detect consciousness; we surface observable risk and route uncertain cases to human review.</p>
+      <div class="hero-actions reveal d3">
+        <a class="btn btn-primary" href="demo.html">Run the live demo
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a class="btn btn-ghost" href="approach.html">Explore the approach</a>
+      </div>
+      <p class="hero-mission reveal d4">We are a small interdisciplinary team. We are not claiming to have solved the whole problem — we are mapping the state of the art, identifying practical gaps, and building a modular verification system that adapts across economic contexts.</p>
+    </div>
+
+    <aside class="hero-card reveal d3" aria-label="Illustrative system output">
+      <h3>Verification stack <span class="live">live preview</span></h3>
+      <div class="status-row"><span class="label">Stun dose (field × duration)</span><span class="val">in range</span><span class="pill pass">Pass</span></div>
+      <div class="status-row"><span class="label">Water conductivity</span><span class="val">drifting</span><span class="pill uncertain">Check</span></div>
+      <div class="status-row"><span class="label">Recovery-clock (stun → bleed)</span><span class="val">+ exceeded</span><span class="pill fail">Intervene</span></div>
+      <div class="status-row"><span class="label">Echo-Stun index</span><span class="val">insensible</span><span class="pill pass">Pass</span></div>
+      <div class="status-row"><span class="label">Batch certificate</span><span class="val">signed</span><span class="pill pass">Logged</span></div>
+    </aside>
+  </div>
+
+  <svg class="wave" viewBox="0 0 1440 110" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0,40 C240,100 480,0 720,40 C960,80 1200,20 1440,55 L1440,110 L0,110 Z"></path>
+  </svg>
+</section>
+
+<!-- ============ WHY THIS MATTERS ============ -->
+<section id="why">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Why this matters</span>
+      <h2>A large-scale welfare problem where small improvements reach enormous numbers of animals.</h2>
+      <p>Even where stunning equipment exists, operators often lack affordable tools to confirm that fish are insensible — and stay insensible — before they are killed.</p>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-card reveal"><div class="stat-num">100<span>B+</span></div><div class="stat-label">Farmed fish slaughtered each year</div><p>Only an estimated ~0.5%, mainly salmon, are currently reliably stunned before slaughter.</p></div>
+      <div class="stat-card reveal d1"><div class="stat-num">~0.5<span>%</span></div><div class="stat-label">Reliably stunned today</div><p>The overwhelming majority of farmed fish are killed without verified pre-slaughter insensibility.</p></div>
+      <div class="stat-card reveal d2"><div class="stat-num">124<span>B</span></div><div class="stat-label">Farmed finfish killed per year</div><p>Peer-reviewed estimate for 2019 (range 78–171 billion; Mood et&nbsp;al. 2023), corroborated by independent Fishcount data (~130 billion).</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SEE IT RUN (demo band) ============ -->
+<section id="try">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">See it run</span>
+      <h2>We didn't just design it — we built it.</h2>
+      <p>A working prototype of the verification engine, running in your browser on simulated data.</p>
+    </div>
+    <div class="card reveal" style="display:flex;flex-wrap:wrap;gap:1.6rem;align-items:center;justify-content:space-between;">
+      <div style="max-width:56ch">
+        <h3>Run a batch through the verification stack</h3>
+        <p style="color:var(--slate);margin:0">Pick a species, introduce process trouble, and watch each fish pass through <strong>dose → recovery-clock → Echo-Stun</strong>, ending in a signed batch certificate. It runs the real engine, fails safe, and never claims to detect consciousness.</p>
+      </div>
+      <a class="btn btn-primary" href="demo.html">Run the live demo
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ THE PRACTICAL GAP ============ -->
+<section id="gap" class="section-alt">
+  <div class="container">
+    <div class="statement reveal">
+      <span class="eyebrow">The practical gap</span>
+      <h2>The missing layer is <em>assurance</em>.</h2>
+      <p>The practical gap is not simply the absence of humane stunning methods — it is the lack of affordable, field-ready assurance that stunning is being applied correctly and remains effective under real operating conditions.</p>
+      <p>Electrical stunning depends on current, voltage, frequency, duration, water conductivity, fish size, species, density, and the time between stunning and killing. In many settings these variables are not continuously logged, checked, or translated into simple operator guidance. StunAssure focuses on this assurance layer: helping operators detect risk, document conditions, improve protocols, and avoid false confidence.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EXPLORE / TEASERS ============ -->
+<section id="explore">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Explore the project</span>
+      <h2>A practical system, grounded in evidence, built step by step.</h2>
+    </div>
+    <div class="teasers">
+      <a class="teaser reveal" href="approach.html">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></div>
+        <h3>Approach &amp; technology</h3>
+        <p>The multi-layer model, the system architecture, how it works step by step, and the deployment &amp; cost tiers.</p>
+        <span class="more">See the approach →</span>
+      </a>
+      <a class="teaser reveal d1" href="state-of-the-art.html">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 19V5a2 2 0 0 1 2-2h11l3 3v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z" stroke-linejoin="round"/><path d="M8 8h7M8 12h8M8 16h5" stroke-linecap="round"/></svg></div>
+        <h3>State of the art</h3>
+        <p>What current methods do well, where the gaps remain, the open research questions, and our cited evidence base.</p>
+        <span class="more">Read the evidence →</span>
+      </a>
+      <a class="teaser reveal d2" href="roadmap.html">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 17l6-6 4 4 7-7" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 8h6v6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h3>Roadmap</h3>
+        <p>Work packages and a realistic MVP plan — what we build at 1, 3, and 6 months, starting with one species.</p>
+        <span class="more">See the plan →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RESPONSIBLE AI BAND ============ -->
+<section id="responsible-band" class="section-alt">
+  <div class="container">
+    <div class="statement reveal">
+      <span class="eyebrow">Responsible by design</span>
+      <h2>What we <em>don't</em> claim matters as much as what we do.</h2>
+      <p>StunAssure does not determine fish consciousness or guarantee humane slaughter. It is a decision-support and risk-management tool: it flags observable risk indicators and process deviations, explains every alert, and keeps expert humans central to every decision.</p>
+      <p><a class="btn btn-ghost" href="responsible-ai.html">Read our Responsible AI boundary
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a></p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TEAM STRIP ============ -->
+<section id="team-strip">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">The team</span>
+      <h2>A small, interdisciplinary project group.</h2>
+    </div>
+    <div class="team-strip reveal">
+      <div class="names">
+        <div class="who2"><span class="avatar">A</span><span><b>Team Member A</b><span>Project Lead</span></span></div>
+        <div class="who2"><span class="avatar">B</span><span><b>Team Member B</b><span>Software &amp; Cloud</span></span></div>
+        <div class="who2"><span class="avatar">C</span><span><b>Team Member C</b><span>Electronics &amp; IoT</span></span></div>
+      </div>
+      <a class="btn btn-outline" href="team.html">Meet the team →</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER / CONTACT ============ -->
+<footer class="site-footer" id="contact">
+  <div class="container">
+    <div class="footer-cta reveal">
+      <h2>We're looking for welfare &amp; aquaculture collaborators.</h2>
+      <p>We believe this is a neglected welfare problem where practical engineering and software can help. If you work in fish welfare, aquaculture, processing, or sensing — we'd value a short conversation.</p>
+      <a class="btn btn-primary" href="mailto:contact@responsiblesystemslab.org">Get in touch
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16v12H4z M4 7l8 6 8-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+    <div class="footer-inner">
+      <div>
+        <div class="footer-brand"><span class="fmark" aria-hidden="true"><svg viewBox="0 0 36 36" fill="none"><rect x="1" y="1" width="34" height="34" rx="11" fill="#A8D5CF"/><path d="M10.5 16l4.2 4.2L24 10.8" stroke="#0D3B3E" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 24.5c2.7-2.9 5.6-2.9 8.3 0s5.6 2.9 8.3 0" stroke="#1F6F6D" stroke-width="2.2" stroke-linecap="round"/></svg></span> StunAssure</div>
+        <p class="disclaimer">A research-driven initiative exploring low-cost, explainable tools for fish-welfare risk management at slaughter. This site is supporting material; it is not a product offering or a guarantee of outcomes.</p>
+      </div>
+      <div class="footer-cols">
+        <div>
+          <h4>Project</h4>
+          <ul>
+            <li><a href="approach.html">Approach &amp; technology</a></li>
+            <li><a href="demo.html">Live demo</a></li>
+            <li><a href="architecture.html">Architecture</a></li>
+            <li><a href="hardware.html">Hardware design</a></li>
+            <li><a href="state-of-the-art.html">State of the art</a></li>
+            <li><a href="responsible-ai.html">Responsible AI</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>More</h4>
+          <ul>
+            <li><a href="team.html">Team</a></li>
+            <li><a href="team.html#contact">Collaborate</a></li>
+            <li><a href="state-of-the-art.html#references">References</a></li><li><a href="index.html">Responsible Systems Lab ↗</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 StunAssure project team.</span>
+      <span>Practical · fail-safe · evidence-informed.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="scripts/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Responsible AI — StunAssure</title>
+<meta name="description" content="StunAssure's responsible-AI boundary: what we do and do not claim, our fail-safe principles, known limitations, and how we differ from existing monitoring tools." />
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2.5' y='2.5' width='27' height='27' rx='9' fill='none' stroke='%231F6F6D' stroke-width='1.6'/%3E%3Cpath d='M9 13.2l3.4 3.4L20 8.8' fill='none' stroke='%231F6F6D' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M8.5 21c2-2.2 4.5-2.2 6.5 0s4.5 2.2 6.5 0' fill='none' stroke='%233BAAA6' stroke-width='1.8' stroke-linecap='round'/%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles/site.css?v=20260614b" />
+<link rel="canonical" href="https://responsiblesystemslab.org/responsible-ai.html" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Responsible Systems Lab" />
+<meta property="og:title" content="Responsible AI — StunAssure" />
+<meta property="og:description" content="StunAssure&#x27;s responsible-AI boundary: what we do and do not claim, our fail-safe principles, known limitations, and how we differ from existing monitoring tools." />
+<meta property="og:url" content="https://responsiblesystemslab.org/responsible-ai.html" />
+<meta property="og:image" content="https://responsiblesystemslab.org/assets/og-stunassure.png" />
+<meta property="og:image:width" content="1200" /><meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Responsible AI — StunAssure" />
+<meta name="twitter:description" content="StunAssure&#x27;s responsible-AI boundary: what we do and do not claim, our fail-safe principles, known limitations, and how we differ from existing monitoring tools." />
+<meta name="twitter:image" content="https://responsiblesystemslab.org/assets/og-stunassure.png" />
+</head>
+<body>
+
+<header class="site-header" id="header">
+  <div class="container nav">
+    <a class="brand" href="stunassure.html"><img src="assets/logo-primary.png" alt="StunAssure logo" /><span>StunAssure<small>Fish welfare assurance</small></span></a>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="stunassure.html">Home</a></li>
+        <li><a href="approach.html">Approach</a></li>
+        <li><a href="demo.html">Demo</a></li>
+        <li><a href="architecture.html">Architecture</a></li>
+        <li><a href="hardware.html">Hardware</a></li>
+        <li><a href="state-of-the-art.html">State of the art</a></li>
+        <li><a href="roadmap.html">Roadmap</a></li>
+        <li><a href="team.html">Team</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn-outline nav-cta" href="team.html#contact">Collaborate</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<main id="top">
+
+<section class="page-hero">
+  <div class="container">
+    <p class="crumbs reveal"><a href="stunassure.html">Home</a> / Responsible AI</p>
+    <span class="eyebrow reveal">Responsible AI boundary</span>
+    <h1 class="reveal d1">We support human judgment — we don't <em>replace</em> it.</h1>
+    <p class="reveal d2">StunAssure is a decision-support and risk-management tool. It identifies observable risk indicators and process deviations, explains every alert, and keeps welfare experts and operators central to every decision. Here is exactly what that means.</p>
+  </div>
+</section>
+
+<section id="claims">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">The boundary</span>
+      <h2>What we do — and what we do not claim.</h2>
+    </div>
+    <div class="grid-2">
+      <div class="card reveal">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h3>What StunAssure does</h3>
+        <ul class="tag-list">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg> Flags <strong>observable welfare-risk indicators</strong> and process deviations.</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg> Explains each alert: what, when, and which data supported it.</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg> Routes uncertain cases to <strong>human review</strong>.</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg> Produces audit-ready evidence for operators, vets, and certifiers.</li>
+        </ul>
+      </div>
+      <div class="card reveal d1">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M15 9l-6 6M9 9l6 6" stroke-linecap="round"/></svg></div>
+        <h3>What it does not claim</h3>
+        <ul class="tag-list gap">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 9l-6 6M9 9l6 6" stroke-linecap="round"/></svg> It does <strong>not</strong> determine whether a fish is conscious.</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 9l-6 6M9 9l6 6" stroke-linecap="round"/></svg> It does <strong>not</strong> guarantee humane slaughter.</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 9l-6 6M9 9l6 6" stroke-linecap="round"/></svg> It does <strong>not</strong> replace stunning equipment or experts.</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 9l-6 6M9 9l6 6" stroke-linecap="round"/></svg> It does <strong>not</strong> publish a fixed "accuracy %" without validated evidence.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout reveal">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7l8-4z" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <p><strong>Fail-safe by design.</strong> In animal welfare the dangerous error is a false "safe." Lower-cost tiers are deliberately more conservative — they produce more "uncertain — check manually" outputs rather than ever falsely certifying a fish as insensible.</p>
+    </div>
+  </div>
+</section>
+
+<section id="principles" class="section-alt">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Design principles</span>
+      <h2>The rules we hold ourselves to.</h2>
+    </div>
+    <div class="grid-3">
+      <div class="card reveal"><h3>Practical before fancy</h3><p>Usable in real farms and vessels — offline-first, simple alerts, low operator burden.</p></div>
+      <div class="card reveal d1"><h3>Fail-safe</h3><p>Uncertain cases trigger manual review, never false confidence.</p></div>
+      <div class="card reveal d2"><h3>Explainable</h3><p>Every flag shows its reasons and supporting data; no black-box verdicts.</p></div>
+      <div class="card reveal"><h3>Expert-validated</h3><p>Welfare indicators are reviewed with domain experts, not asserted by software alone.</p></div>
+      <div class="card reveal d1"><h3>Species-configurable</h3><p>Profiles adapt thresholds to species and local conditions.</p></div>
+      <div class="card reveal d2"><h3>Evidence-based</h3><p>Visible signs alone may be unreliable; we combine them with process data and expert validation.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="limitations">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Known limitations</span>
+      <h2>What we are honest about.</h2>
+      <p>Stating limits plainly is part of responsible practice.</p>
+    </div>
+    <ul class="tag-list gap reveal" style="max-width:62ch">
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4M12 16h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z" stroke-linecap="round" stroke-linejoin="round"/></svg> Video and behaviour alone cannot prove unconsciousness; physical signs may not match neurological evidence.</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4M12 16h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z" stroke-linecap="round" stroke-linejoin="round"/></svg> Performance depends on data quality, species variability, and field conditions (wet, low-light, occluded).</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4M12 16h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z" stroke-linecap="round" stroke-linejoin="round"/></svg> Early tiers rely on conservative rules and human review while validation data is built.</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4M12 16h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z" stroke-linecap="round" stroke-linejoin="round"/></svg> Independent validation against stronger indicators (with experts) is required before any strong welfare claim.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="prior-art" class="section-alt">
+  <div class="container">
+    <div class="statement reveal">
+      <span class="eyebrow">Honest about prior art</span>
+      <h2>We are not the first AI welfare-monitoring system.</h2>
+      <p>Camera-based welfare-monitoring systems already exist for slaughterhouses. Our contribution is specific: <strong>fish-specific</strong> stunning verification, <strong>low-cost</strong> deployment, <strong>explainable</strong> risk scoring, <strong>expert-reviewed</strong> audit evidence, and <strong>multimodal</strong> fusion (video + sensors + process) rather than camera-only inference.</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer" id="contact">
+  <div class="container">
+    <div class="footer-cta reveal">
+      <h2>Hold us to this.</h2>
+      <p>If you see anything on this site that overclaims, tell us. Scientific responsibility is a feature, not a footnote.</p>
+      <a class="btn btn-primary" href="mailto:contact@responsiblesystemslab.org">Get in touch
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16v12H4z M4 7l8 6 8-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+    <div class="footer-inner">
+      <div><div class="footer-brand"><span class="fmark" aria-hidden="true"><svg viewBox="0 0 36 36" fill="none"><rect x="1" y="1" width="34" height="34" rx="11" fill="#A8D5CF"/><path d="M10.5 16l4.2 4.2L24 10.8" stroke="#0D3B3E" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 24.5c2.7-2.9 5.6-2.9 8.3 0s5.6 2.9 8.3 0" stroke="#1F6F6D" stroke-width="2.2" stroke-linecap="round"/></svg></span> StunAssure</div><p class="disclaimer">A research-driven initiative exploring low-cost, explainable tools for fish-welfare risk management at slaughter. This site is supporting material; it is not a product offering or a guarantee of outcomes.</p></div>
+      <div class="footer-cols">
+        <div><h4>Project</h4><ul><li><a href="approach.html">Approach &amp; technology</a></li><li><a href="demo.html">Live demo</a></li><li><a href="architecture.html">Architecture</a></li><li><a href="hardware.html">Hardware design</a></li><li><a href="state-of-the-art.html">State of the art</a></li><li><a href="responsible-ai.html">Responsible AI</a></li></ul></div>
+        <div><h4>More</h4><ul><li><a href="team.html">Team</a></li><li><a href="team.html#contact">Collaborate</a></li><li><a href="state-of-the-art.html#references">References</a></li><li><a href="index.html">Responsible Systems Lab ↗</a></li></ul></div>
+      </div>
+    </div>
+    <div class="footer-bottom"><span>© 2026 StunAssure project team.</span><span>Practical · fail-safe · evidence-informed.</span></div>
+  </div>
+</footer>
+
+<script src="scripts/site.js"></script>
+</body>
+</html>

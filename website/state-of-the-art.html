@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>State of the Art — StunAssure</title>
+<meta name="description" content="A cited, technical view of fish stunning and slaughter today: stunning methods compared, species-specific electrical parameters, the welfare-indicator hierarchy, the limits of machine vision, the standards landscape, and the open research gaps." />
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2.5' y='2.5' width='27' height='27' rx='9' fill='none' stroke='%231F6F6D' stroke-width='1.6'/%3E%3Cpath d='M9 13.2l3.4 3.4L20 8.8' fill='none' stroke='%231F6F6D' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M8.5 21c2-2.2 4.5-2.2 6.5 0s4.5 2.2 6.5 0' fill='none' stroke='%233BAAA6' stroke-width='1.8' stroke-linecap='round'/%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles/site.css?v=20260619a" />
+<link rel="canonical" href="https://responsiblesystemslab.org/state-of-the-art.html" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Responsible Systems Lab" />
+<meta property="og:title" content="State of the Art — StunAssure" />
+<meta property="og:description" content="A cited, technical view of fish stunning and slaughter today: methods compared, species-specific electrical parameters, the welfare-indicator hierarchy, and the open research gaps." />
+<meta property="og:url" content="https://responsiblesystemslab.org/state-of-the-art.html" />
+<meta property="og:image" content="https://responsiblesystemslab.org/assets/og-stunassure.png" />
+<meta property="og:image:width" content="1200" /><meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="State of the Art — StunAssure" />
+<meta name="twitter:description" content="A cited, technical view of fish stunning and slaughter today: methods compared, species-specific electrical parameters, the welfare-indicator hierarchy, and the open research gaps." />
+<meta name="twitter:image" content="https://responsiblesystemslab.org/assets/og-stunassure.png" />
+
+<!-- Charts: Chart.js (MIT-licensed, free CDN). Renders the cited data already on this page. -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.6/dist/chart.umd.min.js" defer></script>
+<style>
+  .sa-fig{margin:2rem 0 .5rem;background:var(--white);border:1px solid var(--border);border-radius:16px;padding:1.1rem 1.2rem 1rem}
+  .sa-fig h3{margin:.1rem 0 .2rem;font-size:1.04rem;color:var(--ink)}
+  .sa-fig .sa-sub{color:var(--slate);font-size:.87rem;margin:0 0 .8rem}
+  .sa-fig .sa-box{position:relative;height:300px}
+  .sa-fig figcaption{margin:.75rem 0 0;font-size:.78rem;color:var(--slate);border-top:1px dashed var(--border);padding-top:.55rem}
+  .sa-fig figcaption a{color:var(--data);text-decoration:none}
+</style>
+
+<!-- Structured data for search engines + AI answer engines (GEO/AEO) -->
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+ {"@type":"Organization","@id":"https://responsiblesystemslab.org/#org","name":"Responsible Systems Lab","url":"https://responsiblesystemslab.org/","email":"contact@responsiblesystemslab.org","description":"Early-stage independent research group building responsible sensing, verification, and welfare-aware systems. Current project: StunAssure."},
+ {"@type":"ResearchProject","@id":"https://responsiblesystemslab.org/#stunassure","name":"StunAssure","url":"https://responsiblesystemslab.org/stunassure.html","parentOrganization":{"@id":"https://responsiblesystemslab.org/#org"},"description":"A low-cost, fail-safe verification and audit layer that documents whether electrical stunning worked on fish-processing lines. Not a new stunning method; does not claim to detect consciousness."},
+ {"@type":"TechArticle","headline":"State of the Art — humane fish stunning and slaughter","url":"https://responsiblesystemslab.org/state-of-the-art.html","isPartOf":{"@id":"https://responsiblesystemslab.org/#stunassure"},"about":["fish welfare","electrical stunning","humane slaughter","aquaculture"],"publisher":{"@id":"https://responsiblesystemslab.org/#org"}},
+ {"@type":"FAQPage","mainEntity":[
+  {"@type":"Question","name":"Does StunAssure detect fish consciousness?","acceptedAnswer":{"@type":"Answer","text":"No. StunAssure does not claim software can determine consciousness. It measures process and physiological proxies, flags welfare risk, and routes uncertain cases to expert review."}},
+  {"@type":"Question","name":"How many fish are killed without effective stunning?","acceptedAnswer":{"@type":"Answer","text":"About 124 billion farmed finfish are killed per year (range 78 to 171 billion; Mood et al. 2023), and about 0.5 percent are reliably stunned before killing (welfare-sector estimate)."}},
+  {"@type":"Question","name":"Why is verifying a fish stun hard?","acceptedAnswer":{"@type":"Answer","text":"Electrical stunning is reversible: Atlantic salmon can show EEG recovery signs from about 44 seconds after the current stops, and gold-standard measures such as EEG and visual evoked responses are lab-only, so field operators rely on weaker proxies."}}
+ ]}
+]}
+</script>
+</head>
+<body>
+
+<header class="site-header" id="header">
+  <div class="container nav">
+    <a class="brand" href="stunassure.html"><img src="assets/logo-primary.png" alt="StunAssure logo" /><span>StunAssure<small>Fish welfare assurance</small></span></a>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="stunassure.html">Home</a></li>
+        <li><a href="approach.html">Approach</a></li>
+        <li><a href="demo.html">Demo</a></li>
+        <li><a href="architecture.html">Architecture</a></li>
+        <li><a href="hardware.html">Hardware</a></li>
+        <li><a href="state-of-the-art.html">State of the art</a></li>
+        <li><a href="roadmap.html">Roadmap</a></li>
+        <li><a href="team.html">Team</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn-outline nav-cta" href="team.html#contact">Collaborate</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<main id="top">
+
+<section class="page-hero">
+  <div class="container">
+    <p class="crumbs reveal"><a href="stunassure.html">Home</a> / State of the art</p>
+    <span class="eyebrow reveal">State of the art</span>
+    <h1 class="reveal d1">What works today — and where the <em>gaps</em> remain.</h1>
+    <p class="reveal d2">An evidence-based, cited map of stunning and slaughter practice: the methods in use, the species-specific electrical parameters from the primary literature, the welfare-indicator hierarchy, the real limits of machine vision, and the open questions we intend to answer. Every figure on this page is referenced.</p>
+  </div>
+</section>
+
+<!-- SCALE -->
+<section id="scale">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Scale of the problem</span>
+      <h2>The largest animal-welfare problem almost no one measures.</h2>
+      <p>Farmed finfish are now killed in numbers that dwarf all farmed birds and mammals combined — yet most are killed by methods the welfare science classifies as poor.</p>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-card reveal">
+        <div class="stat-num">~124<span> bn</span></div>
+        <div class="stat-label">Farmed finfish killed per year</div>
+        <p>Peer-reviewed estimate for 2019 (range 78–171 bn); up roughly nine-fold since 1990 and now exceeding all farmed birds and mammals combined.</p>
+        <span class="src">Mood et&nbsp;al. (2023), <em>Animal Welfare</em> <a href="#r1">[1]</a></span>
+      </div>
+      <div class="stat-card reveal d1">
+        <div class="stat-num">&lt;1<span>%</span></div>
+        <div class="stat-label">Reliably stunned before killing</div>
+        <p>By recent estimates, the large majority are killed without effective stunning. The common default is live chilling in ice slurry — death by hypothermia and asphyxia while still sensible.</p>
+        <span class="src">Welfare-sector estimate</span>
+      </div>
+      <div class="stat-card reveal d2">
+        <div class="stat-num">0<span> of 21</span></div>
+        <div class="stat-label">Italian sea bass &amp; bream farms stunning</div>
+        <p>In a survey of Italian operations, none stunned fish before slaughter — the gap that motivates a Mediterranean sea bass / gilthead bream pilot.</p>
+        <span class="src">Clemente et&nbsp;al. (2023), <em>Front. Vet. Sci.</em> <a href="#r14">[14]</a></span>
+      </div>
+    </div>
+    <figure class="sa-fig reveal">
+      <h3>The scale almost no one measures</h3>
+      <p class="sa-sub">Farmed finfish killed per year versus the share reliably stunned before killing.</p>
+      <div class="sa-box"><canvas id="sa1" aria-label="Bar chart: about 124 billion farmed finfish killed per year, about 0.5 percent reliably stunned"></canvas></div>
+      <figcaption>~124 bn killed in 2019 (range 78–171 bn) — Mood et&nbsp;al. 2023 <a href="#r1">[1]</a>; <strong>~0.5%</strong> reliably stunned (≈0.6 bn) — welfare-sector estimate.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- METHODS COMPARED -->
+<section id="methods" class="section-alt">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">How fish are killed today</span>
+      <h2>Six methods, very different welfare.</h2>
+      <p>Two methods can be humane when correctly applied; the rest are listed by the WOAH Aquatic Animal Health Code among methods shown to result in poor fish welfare<a class="cite" href="#r2">2</a>. The default in much of the industry is the bottom three.</p>
+    </div>
+    <div class="tbl-wrap reveal">
+      <table class="dtable">
+        <thead>
+          <tr><th scope="col">Method</th><th scope="col">How it works</th><th scope="col">Welfare</th><th scope="col">Time to insensibility</th><th scope="col">Notes</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Percussive / mechanical</th>
+            <td>A blow or captive bolt to the brain causes immediate concussion.</td>
+            <td><span class="verdict good">Recommended</span></td>
+            <td class="num">Immediate</td>
+            <td>Irreversible if correctly placed. Best for large fish (&gt;1&nbsp;kg). Field audits still found ~8% of trout with signs of consciousness after stunning.<a class="cite" href="#r11">11</a><a class="cite" href="#r12">12</a></td>
+          </tr>
+          <tr>
+            <th scope="row">Electrical (in-water)</th>
+            <td>Current passed through the fish in an electric field induces an epileptiform insult.</td>
+            <td><span class="verdict good">Recommended</span></td>
+            <td class="num">&lt;1&nbsp;s onset</td>
+            <td>Usually <em>reversible</em> — fish must be killed before they recover. Parameters are highly sensitive to water conductivity.<a class="cite" href="#r6">6</a><a class="cite" href="#r7">7</a></td>
+          </tr>
+          <tr>
+            <th scope="row">Ice slurry / live chilling</th>
+            <td>Fish are immersed in iced water; death by hypothermia and asphyxia.</td>
+            <td><span class="verdict poor">Poor welfare</span></td>
+            <td class="num">~10–20&nbsp;min</td>
+            <td>The Mediterranean default. Loss of consciousness is delayed — reported ~10–20&nbsp;min depending on temperature and species. Fish are immobilised but can remain sensible.<a class="cite" href="#r4">4</a><a class="cite" href="#r13">13</a></td>
+          </tr>
+          <tr>
+            <th scope="row">CO₂ narcosis</th>
+            <td>Fish held in CO₂-saturated water until they stop moving.</td>
+            <td><span class="verdict poor">Poor welfare</span></td>
+            <td class="num">~6&nbsp;min</td>
+            <td>Salmon can stay conscious ~6&nbsp;min despite loss of movement — "not considered a stunning method." Strongly aversive; banned for fish in Norway since 2010.<a class="cite" href="#r6">6</a></td>
+          </tr>
+          <tr>
+            <th scope="row">Asphyxiation in air</th>
+            <td>Fish removed from water and left to suffocate.</td>
+            <td><span class="verdict poor">Poor welfare</span></td>
+            <td class="num">2–25&nbsp;min</td>
+            <td>Trout modelling estimates 1.9–21.7&nbsp;min of moderate-to-extreme pain per fish (3.5–74&nbsp;min/kg).<a class="cite" href="#r15">15</a></td>
+          </tr>
+          <tr>
+            <th scope="row">Exsanguination w/o stunning</th>
+            <td>Gill arches cut while the fish is fully conscious; death by blood loss.</td>
+            <td><span class="verdict poor">Poor welfare</span></td>
+            <td class="num">Not quantified</td>
+            <td>Listed by WOAH among poor-welfare methods to avoid where stunning is feasible.<a class="cite" href="#r2">2</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="tbl-note reveal">"Recommended" methods are humane <em>only when correctly calibrated and verified</em> — which, as the next two sections show, is exactly where practice breaks down.</p>
+    <figure class="sa-fig reveal">
+      <h3>Time to insensibility, by method</h3>
+      <p class="sa-sub">Log scale (seconds). The two recommended methods act in ~1&nbsp;second; the poor-welfare defaults take minutes.</p>
+      <div class="sa-box"><canvas id="sa2" aria-label="Horizontal log-scale bar chart of time to insensibility per slaughter method"></canvas></div>
+      <figcaption>Percussive/electrical vs CO₂ (~6 min), ice slurry (~10–20 min), air asphyxia (2–25 min) — WOAH <a href="#r2">[2]</a>, EFSA <a href="#r4">[4]</a><a href="#r6">[6]</a>, Schuck-Paim 2025 <a href="#r15">[15]</a>. Bars plot representative values; per-species ranges are in the table above.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- SPECIES PARAMETERS -->
+<section id="parameters">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Electrical stunning parameters</span>
+      <h2>There is no single setting — it is physics, per species, per site.</h2>
+      <p>What stuns a fish in water is the <strong>field strength inside its head</strong>, not total current — and that depends on the ratio of the fish's conductivity to the surrounding water's<a class="cite" href="#r7">7</a>. Seawater (~50,000&nbsp;µS/cm) is ~200× more conductive than fish flesh, so seawater species need far higher current density than freshwater ones. Published, measured parameters:</p>
+    </div>
+    <div class="tbl-wrap reveal">
+      <table class="dtable">
+        <caption>Values from primary literature; all are site- and conductivity-dependent and must be re-established on installation. "—" indicates no published measured specification.</caption>
+        <thead>
+          <tr><th scope="col">Species</th><th scope="col">Water</th><th scope="col">Field / current density</th><th scope="col">Frequency</th><th scope="col">Duration</th><th scope="col">Insensibility / recovery</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Atlantic salmon</th>
+            <td>Seawater</td>
+            <td class="num">≈1.25–2 V<sub>rms</sub>/cm</td>
+            <td class="num">50 Hz AC</td>
+            <td class="num">~0.8–1 s</td>
+            <td>&gt;2 min unconscious; EEG-recovery signs can appear from ~44&nbsp;s.<a class="cite" href="#r6">6</a></td>
+          </tr>
+          <tr>
+            <th scope="row">Rainbow trout</th>
+            <td>Freshwater</td>
+            <td class="num">2.5 V/cm <small>≈ 0.12–0.16 A/dm²</small></td>
+            <td class="num">1000 Hz AC</td>
+            <td class="num">~1–2 s</td>
+            <td>Onset &lt;1&nbsp;s; recovers within minutes if not killed. 1&nbsp;kHz minimises haemorrhage.<a class="cite" href="#r4">4</a></td>
+          </tr>
+          <tr>
+            <th scope="row">European sea bass</th>
+            <td>Seawater</td>
+            <td class="num">3.3 A<sub>rms</sub>/dm²</td>
+            <td class="num">50 Hz AC</td>
+            <td class="num">1 s</td>
+            <td>Epileptiform insult ~48&nbsp;s; reported effective in lab trials.<a class="cite" href="#r8">8</a></td>
+          </tr>
+          <tr>
+            <th scope="row">Gilthead sea bream</th>
+            <td>Seawater</td>
+            <td class="num">— <small>no published spec</small></td>
+            <td class="num">—</td>
+            <td class="num">—</td>
+            <td>Industry extrapolates from sea bass. Recovery reported from &lt;1 to &gt;20&nbsp;min by parameters.<a class="cite" href="#r5">5</a><a class="cite" href="#r13">13</a></td>
+          </tr>
+          <tr>
+            <th scope="row">Common carp</th>
+            <td>Freshwater</td>
+            <td class="num">≈0.14 A/dm² <small>(0.09–0.41; 15–68 V/cm)</small></td>
+            <td class="num">50 Hz AC</td>
+            <td class="num">1 s</td>
+            <td>VER at 30±8&nbsp;s; behavioural recovery 1–9&nbsp;min → immediate kill required.<a class="cite" href="#r9">9</a></td>
+          </tr>
+          <tr>
+            <th scope="row">Nile tilapia</th>
+            <td>Freshwater</td>
+            <td class="num">≈1.1 A/dm² <small>(often insufficient — resistant)</small></td>
+            <td class="num">50 Hz AC</td>
+            <td class="num">~30 s</td>
+            <td>Unusually resistant to electrical stunning; recent work recommends percussion instead.<a class="cite" href="#r10">10</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout reveal">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01" stroke-linecap="round"/></svg>
+      <p><strong>The biggest single gap:</strong> for gilthead sea bream — one of the largest unstunned finfish sectors — there is <em>no published, measured electrical-stunning specification at all</em>. Parameters are borrowed from sea bass. Closing species- and site-specific calibration gaps like this is the core of the problem.</p>
+    </div>
+    <figure class="sa-fig reveal">
+      <h3>Which species have a published stun specification?</h3>
+      <p class="sa-sub">The biggest single gap, at a glance: gilthead sea bream has no measured specification.</p>
+      <div class="sa-box"><canvas id="sa3" aria-label="Chart showing a published electrical-stunning specification exists for salmon, trout, sea bass, carp and tilapia but not sea bream"></canvas></div>
+      <figcaption>Bream parameters are borrowed from sea bass; no published spec exists — EFSA <a href="#r5">[5]</a>, de la Rosa 2021 <a href="#r13">[13]</a>.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- VERIFICATION PROBLEM -->
+<section id="verification" class="section-alt">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">The verification problem</span>
+      <h2>Stunning a fish is not the hard part. Knowing it worked is.</h2>
+      <p>Insensibility can be confirmed rigorously only with brain measures — but those are lab-only. On the line, operators rely on physical proxies, and the science is clear that those proxies are weakly validated and differ by species.</p>
+    </div>
+    <div class="ladder reveal">
+      <div class="rung gold">
+        <span class="grade">Gold standard</span>
+        <div class="what"><b>EEG — cortical activity</b><p>Insensibility read from an isoelectric trace, or a generalised seizure followed by suppression.</p></div>
+        <span class="field lab">Lab only</span>
+      </div>
+      <div class="rung gold">
+        <span class="grade">Gold standard</span>
+        <div class="what"><b>Visual evoked responses (VER)</b><p>The EEG response to a light flash; its absence indicates loss of consciousness.</p></div>
+        <span class="field lab">Lab only</span>
+      </div>
+      <div class="rung best">
+        <span class="grade">Best proxy</span>
+        <div class="what"><b>Opercular / ventilation reflex</b><p>Gill movement — the field sign that aligns most closely with VER, but not equivalent to it.</p></div>
+        <span class="field yes">Field-usable</span>
+      </div>
+      <div class="rung mod">
+        <span class="grade">Moderate</span>
+        <div class="what"><b>Vestibulo-ocular reflex (eye-roll)</b><p>A brainstem reflex; useful but reliability varies markedly between species.</p></div>
+        <span class="field yes">Field-usable</span>
+      </div>
+      <div class="rung weak">
+        <span class="grade">Least reliable</span>
+        <div class="what"><b>Body movement · balance · response to stimuli</b><p>Can both over- and under-estimate insensibility. CO₂, for one, stops movement while the fish is still conscious.</p></div>
+        <span class="field yes">Field-usable</span>
+      </div>
+    </div>
+    <div class="callout reveal" style="margin-top:1.8rem;">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7l8-4z" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <p><strong>Why this is the open problem.</strong> Electrical stunning is reversible — salmon can begin EEG recovery from ~44&nbsp;s after the current stops<a class="cite" href="#r6">6</a>, so the stun-to-kill window is short. EFSA notes welfare indicators have "only been validated in the laboratory for a few species"<a class="cite" href="#r5">5</a>, and there are currently <em>no behavioural indicators that can fully differentiate paralysis from unconsciousness or death</em><a class="cite" href="#r14">14</a>. That is precisely why <a href="approach.html">verification and audit — not new stunning hardware — is where we focus</a>.</p>
+    </div>
+    <figure class="sa-fig reveal">
+      <h3>The stun-to-kill window is short</h3>
+      <p class="sa-sub">Electrical stunning is reversible — recovery can begin fast. RSPCA Assured's target is ≤15&nbsp;s stun-to-bleed.</p>
+      <div class="sa-box"><canvas id="sa4" aria-label="Log-scale chart of recovery-onset times per species against the 15 second RSPCA target"></canvas></div>
+      <figcaption>Salmon EEG recovery from ~44&nbsp;s — EFSA <a href="#r6">[6]</a>; carp VER at 30±8&nbsp;s, behavioural recovery 1–9&nbsp;min — Retter 2018 <a href="#r9">[9]</a>; RSPCA ≤15&nbsp;s CCTV-verified — RSPCA 2024 <a href="#r17">[17]</a>.</figcaption>
+    </figure>
+    <figure class="sa-fig reveal">
+      <h3>Reliability vs field-usability of welfare indicators</h3>
+      <p class="sa-sub">The gold-standard measures are lab-only; the field-usable proxies are weaker. That inversion is the open problem.</p>
+      <div class="sa-box"><canvas id="sa5" aria-label="Ranked chart of welfare indicators by reliability, marking which are lab-only versus field-usable"></canvas></div>
+      <figcaption>EEG / VER gold-standard but lab-only; opercular reflex the best field proxy; body movement least reliable — WOAH <a href="#r2">[2]</a>, EFSA <a href="#r5">[5]</a>, Clemente 2023 <a href="#r14">[14]</a>. Ordinal ranking from the cited hierarchy — bar lengths show rank, not measured values.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- MONITORING TECH -->
+<section id="monitoring">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Monitoring technology</span>
+      <h2>What AI and machine vision can — and cannot — do yet.</h2>
+      <p>Computer vision in aquaculture is advancing fast, but the capabilities that exist are not the capability this problem needs.</p>
+    </div>
+    <div class="grid-2">
+      <div class="card reveal">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h3>Demonstrated today</h3>
+        <ul class="tag-list">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg> Counting, size &amp; biomass estimation, often &gt;90% accuracy in controlled settings.<a class="cite" href="#r16">16</a></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg> Species classification, detection, tracking, and feeding-behaviour analysis.</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg> Proof of concept in an adjacent species: vision systems distinguish stunned vs unstunned <em>poultry</em> — so the idea is technically feasible.</li>
+        </ul>
+      </div>
+      <div class="card reveal d1">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01" stroke-linecap="round"/></svg></div>
+        <h3>Not yet solved</h3>
+        <ul class="tag-list gap">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg> Scarce labelled data and poor generalisation — models drop sharply on new species or sites.<a class="cite" href="#r16">16</a></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg> Occlusion at high density, turbidity, glare and refraction degrade real-line imaging.</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg> Most results are lab-only; field deployment and validation remain open.</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg> <strong>No validated automated system for fish consciousness at slaughter exists.</strong><a class="cite" href="#r14">14</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout reveal">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7l8-4z" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <p><strong>Our reading of the evidence.</strong> Vision alone cannot prove consciousness, and pretending otherwise would be dishonest. The opportunity is a <em>conservative, multi-signal, explainable</em> system that flags welfare risk and produces audit evidence — fusing process, sensor and visual signals, with experts kept in the loop. <a href="responsible-ai.html">See the boundary we hold ourselves to →</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- STANDARDS -->
+<section id="standards" class="section-alt">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Standards &amp; regulation</span>
+      <h2>The rules point the right way — but stop short on fish.</h2>
+      <p>The direction of travel is clear; what is missing is species-specific technical detail and routine verification.</p>
+    </div>
+    <div class="grid-3">
+      <div class="card reveal">
+        <h3>WOAH Aquatic Code (Ch.&nbsp;7.3)</h3>
+        <p>Fish should be stunned before killing, with "immediate and irreversible loss of consciousness" — or be killed before they recover. Effectiveness is to be verified by absence of opercular activity, VER and the eye-roll reflex.<a class="cite" href="#r2">2</a></p>
+        <p style="margin:0;color:var(--slate);font-size:0.88rem;"><em>Gap:</em> sea bass and bream are notably absent from its worked method examples.</p>
+      </div>
+      <div class="card reveal d1">
+        <h3>EU Regulation 1099/2009</h3>
+        <p>Animals "shall be spared any avoidable pain, distress or suffering during their killing" — and this does apply to fish.<a class="cite" href="#r3">3</a></p>
+        <p style="margin:0;color:var(--slate);font-size:0.88rem;"><em>Gap:</em> only this general principle applies — there are still no species-specific technical requirements for fish.</p>
+      </div>
+      <div class="card reveal d2">
+        <h3>RSPCA Assured</h3>
+        <p>Permits only percussive-plus-bleed or electrical stunning; prohibits CO₂, air and ice suffocation. From 22&nbsp;July&nbsp;2025, CCTV must cover the whole slaughter process, including post-stun assessment.<a class="cite" href="#r17">17</a></p>
+        <p style="margin:0;color:var(--slate);font-size:0.88rem;"><em>Signal:</em> certification is moving toward continuous, recorded verification — the niche StunAssure serves.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OPEN QUESTIONS -->
+<section id="questions">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Open research questions</span>
+      <h2>We begin with questions, not assumptions.</h2>
+      <p>These shape the Phase&nbsp;1 problem map, the welfare-indicator framework, and the pilot design.</p>
+    </div>
+    <div class="qcols">
+      <div class="qblock reveal">
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7l8-4z" stroke-linejoin="round"/></svg> Welfare validation</h3>
+        <ul><li>Which proxies are reliable for sea bass and bream specifically?</li><li>How can ventilation and eye-roll signs be validated against VER in the field?</li><li>What failure modes are most dangerous to miss?</li></ul>
+      </div>
+      <div class="qblock reveal d1">
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2" stroke-linecap="round"/></svg> Engineering</h3>
+        <ul><li>Which sensors stay reliable in wet, saline, harsh environments?</li><li>Can stunner and water parameters be logged without modifying existing equipment?</li><li>Can the system run fully offline at a remote site?</li></ul>
+      </div>
+      <div class="qblock reveal d2">
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 21h18M5 21V8l7-5 7 5v13" stroke-linejoin="round"/></svg> Adoption</h3>
+        <ul><li>What cost is acceptable for small and medium farms?</li><li>What audit evidence would certifiers and buyers trust?</li><li>What training do line operators actually need?</li></ul>
+      </div>
+      <div class="qblock reveal d3">
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2" stroke-linecap="round"/></svg> Pilot design</h3>
+        <ul><li>Sea bass or bream first — and at what site type?</li><li>Which Mediterranean operation is easiest and highest-impact?</li><li>What 6-month result would justify expansion?</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REFERENCES -->
+<section id="references" class="section-alt">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">References</span>
+      <h2>Grounded in public evidence.</h2>
+      <p>Primary sources behind the figures on this page. Where the literature is silent — sea bream parameters, validated consciousness detection — we say so explicitly rather than fill the gap with a number.</p>
+    </div>
+    <ol class="refs">
+      <li id="r1" class="reveal"><span class="n">01</span><div><a href="https://doi.org/10.1017/awf.2023.4" target="_blank" rel="noopener">Mood, Lara, Boyland &amp; Brooke (2023) — Numbers of farmed finfish killed, <em>Animal Welfare</em> 32:e12</a><p>Peer-reviewed estimate of ~124 billion farmed finfish slaughtered in 2019 (range 78–171 bn).</p></div></li>
+      <li id="r2" class="reveal d1"><span class="n">02</span><div><a href="https://www.woah.org/fileadmin/Home/eng/Health_standards/aahc/current/chapitre_welfare_stunning_killing.pdf" target="_blank" rel="noopener">WOAH — Aquatic Animal Health Code, Ch. 7.3: stunning &amp; killing of farmed fish</a><p>Requires stun-before-kill, verification by absence of opercular/VER/eye-roll signs, and lists poor-welfare methods to avoid.</p></div></li>
+      <li id="r3" class="reveal d2"><span class="n">03</span><div><a href="https://eur-lex.europa.eu/eli/reg/2009/1099/oj/eng" target="_blank" rel="noopener">EU Regulation (EC) No 1099/2009 — protection of animals at killing</a><p>General duty to spare avoidable suffering applies to fish; no species-specific technical rules for fish exist.</p></div></li>
+      <li id="r4" class="reveal"><span class="n">04</span><div><a href="https://efsa.onlinelibrary.wiley.com/doi/10.2903/j.efsa.2009.1012" target="_blank" rel="noopener">EFSA AHAW (2009) — Welfare aspects of stunning &amp; killing of farmed rainbow trout</a><p>Electrical parameters, frequency effects, and ice-slurry insensibility times for trout.</p></div></li>
+      <li id="r5" class="reveal d1"><span class="n">05</span><div><a href="https://efsa.onlinelibrary.wiley.com/doi/10.2903/j.efsa.2009.1010" target="_blank" rel="noopener">EFSA AHAW (2009) — Stunning &amp; killing of farmed sea bass &amp; gilthead sea bream</a><p>Notes welfare indicators are validated only in the lab for a few species; treats the two species jointly.</p></div></li>
+      <li id="r6" class="reveal d2"><span class="n">06</span><div><a href="https://efsa.onlinelibrary.wiley.com/doi/10.2903/j.efsa.2009.1011" target="_blank" rel="noopener">EFSA AHAW (2009) — Stunning &amp; killing of farmed Atlantic salmon</a><p>Electrical-stun thresholds and the ~44–443&nbsp;s EEG-recovery window; CO₂ not a stunning method.</p></div></li>
+      <li id="r7" class="reveal"><span class="n">07</span><div><a href="https://doi.org/10.1016/j.aquaculture.2004.07.023" target="_blank" rel="noopener">Lines &amp; Kestin (2004) — Electrical stunning of fish: the relationship between water conductivity and body resistance, <em>Aquaculture</em> 241</a><p>Establishes that field strength at the fish, governed by conductivity, is what determines the stun.</p></div></li>
+      <li id="r8" class="reveal d1"><span class="n">08</span><div><a href="https://doi.org/10.1111/j.1365-2109.2007.01860.x" target="_blank" rel="noopener">Lambooij et&nbsp;al. (2008) — Electrical stunning of European sea bass, <em>Aquaculture Research</em> 39(1)</a><p>Measured current density (~3.3&nbsp;A/dm²) and epileptiform insult duration in seawater.</p></div></li>
+      <li id="r9" class="reveal d2"><span class="n">09</span><div><a href="https://doi.org/10.1186/s12917-018-1530-0" target="_blank" rel="noopener">Retter et&nbsp;al. (2018) — Electrical stunning of common carp (open access), <em>BMC Veterinary Research</em> 14:205</a><p>Field-confirmed carp parameters and recovery times across a range of conductivities.</p></div></li>
+      <li id="r10" class="reveal"><span class="n">10</span><div><a href="https://doi.org/10.1016/j.aquaculture.2024.741317" target="_blank" rel="noopener">Sundell et&nbsp;al. (2024) — The quest for a humane protocol for stunning and killing Nile tilapia, <em>Aquaculture</em> 593:741317</a><p>Finds tilapia resistant to electrical stunning and recommends percussion / combined methods.</p></div></li>
+      <li id="r11" class="reveal d1"><span class="n">11</span><div><a href="https://doi.org/10.1016/j.aquaculture.2022.738012" target="_blank" rel="noopener">Hjelmstedt et&nbsp;al. (2022) — Percussive vs electrical stunning of rainbow trout, <em>Aquaculture</em> 552</a><p>Captive-bolt stunning induced immediate, permanent brain failure — no epileptiform seizures or VERs — in the trout tested.</p></div></li>
+      <li id="r12" class="reveal d2"><span class="n">12</span><div><a href="https://doi.org/10.1186/s12917-020-02412-5" target="_blank" rel="noopener">Jung-Schroers et&nbsp;al. (2020) — Stunning on trout farms (open access), <em>BMC Veterinary Research</em> 16:197</a><p>Found ~8% of percussively stunned trout still showing signs of consciousness; worst farm 20%.</p></div></li>
+      <li id="r13" class="reveal"><span class="n">13</span><div><a href="https://doi.org/10.3390/ani11082164" target="_blank" rel="noopener">de la Rosa et&nbsp;al. (2021) — Twenty years of research on sea bass &amp; sea bream welfare at slaughter, <em>Animals</em> 11(8)</a><p>Reviews recovery times and the absence of bream-specific electrical specifications.</p></div></li>
+      <li id="r14" class="reveal d1"><span class="n">14</span><div><a href="https://doi.org/10.3389/fvets.2023.1253151" target="_blank" rel="noopener">Clemente et&nbsp;al. (2023) — <em>Frontiers in Veterinary Science</em></a><p>"No behavioral indicators that can fully differentiate paralysis from unconsciousness or death"; Italian sea bass/bream stunning survey.</p></div></li>
+      <li id="r15" class="reveal d2"><span class="n">15</span><div><a href="https://doi.org/10.1038/s41598-025-04272-1" target="_blank" rel="noopener">Schuck-Paim et&nbsp;al. (2025) — Quantifying suffering in air-asphyxiated trout, <em>Scientific Reports</em> 15:19850</a><p>Estimates the duration and intensity of pain during asphyxiation slaughter.</p></div></li>
+      <li id="r16" class="reveal"><span class="n">16</span><div><a href="https://arxiv.org/abs/2406.17800" target="_blank" rel="noopener">Cui et&nbsp;al. (2024) — Survey of machine vision in aquaculture (open access), arXiv:2406.17800</a><p>Documents strong controlled-setting performance alongside data, generalisation, and field-validation gaps.</p></div></li>
+      <li id="r17" class="reveal d1"><span class="n">17</span><div><a href="https://science.rspca.org.uk/documents/d/science/rspca_welfare_standards_for_farmed_atlantic_salmon" target="_blank" rel="noopener">RSPCA — Welfare Standards for Farmed Atlantic Salmon (2024)</a><p>Permitted stunning methods and the CCTV-at-slaughter requirement effective 22 July 2025.</p></div></li>
+    </ol>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer" id="contact">
+  <div class="container">
+    <div class="footer-cta reveal">
+      <h2>Know this field? We'd value your input.</h2>
+      <p>If you research fish welfare, stunning, or aquaculture monitoring, a short conversation would help us sharpen the evidence base and pilot design.</p>
+      <a class="btn btn-primary" href="mailto:contact@responsiblesystemslab.org">Get in touch
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16v12H4z M4 7l8 6 8-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+    <div class="footer-inner">
+      <div><div class="footer-brand"><span class="fmark" aria-hidden="true"><svg viewBox="0 0 36 36" fill="none"><rect x="1" y="1" width="34" height="34" rx="11" fill="#A8D5CF"/><path d="M10.5 16l4.2 4.2L24 10.8" stroke="#0D3B3E" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 24.5c2.7-2.9 5.6-2.9 8.3 0s5.6 2.9 8.3 0" stroke="#1F6F6D" stroke-width="2.2" stroke-linecap="round"/></svg></span> StunAssure</div><p class="disclaimer">A research-driven initiative exploring low-cost, explainable tools for fish-welfare risk management at slaughter. This site is supporting material; it is not a product offering or a guarantee of outcomes.</p></div>
+      <div class="footer-cols">
+        <div><h4>Project</h4><ul><li><a href="approach.html">Approach &amp; technology</a></li><li><a href="demo.html">Live demo</a></li><li><a href="architecture.html">Architecture</a></li><li><a href="hardware.html">Hardware design</a></li><li><a href="state-of-the-art.html">State of the art</a></li><li><a href="responsible-ai.html">Responsible AI</a></li></ul></div>
+        <div><h4>More</h4><ul><li><a href="team.html">Team</a></li><li><a href="team.html#contact">Collaborate</a></li><li><a href="state-of-the-art.html#references">References</a></li><li><a href="index.html">Responsible Systems Lab ↗</a></li></ul></div>
+      </div>
+    </div>
+    <div class="footer-bottom"><span>© 2026 StunAssure project team.</span><span>Practical · fail-safe · evidence-informed.</span></div>
+  </div>
+</footer>
+
+<script>
+// State-of-the-art charts — cited data mirrors this page's tables. Chart.js (deferred) is ready by DOMContentLoaded.
+window.addEventListener('DOMContentLoaded', function(){
+  if(typeof Chart === 'undefined') return;
+  var css = getComputedStyle(document.documentElement), c = function(n){return css.getPropertyValue(n).trim();};
+  var TEAL=c('--ocean-teal')||'#1F6F6D', FOAM=c('--seafoam')||'#3BAAA6', DEEP=c('--deep-ocean')||'#0D3B3E',
+      SLATE=c('--slate')||'#5D7073', LINE=c('--border')||'#D9E6E3', MUTE=c('--slate')||'#5D7073',
+      POOR='#C4462F', WARN='#D98A2B';
+  Chart.defaults.font.family = "Inter, system-ui, sans-serif";
+  Chart.defaults.color = MUTE;
+  Chart.defaults.layout = {padding:{left:6,right:10,top:4}};
+  var grid = {color:LINE, drawTicks:false}, noLeg = {legend:{display:false}};
+  var el = function(id){return document.getElementById(id);};
+
+  if(el('sa1')) new Chart(el('sa1'), {type:'bar', data:{labels:['Killed / year','Reliably stunned'],
+    datasets:[{data:[124,0.62], backgroundColor:[SLATE,TEAL], borderRadius:6}]},
+    options:{indexAxis:'y', plugins:{legend:{display:false}, tooltip:{callbacks:{label:function(x){return x.parsed.x+' bn fish';}}}},
+      scales:{x:{grid:grid, title:{display:true,text:'billions of fish / year'}}, y:{grid:{display:false}}}}});
+
+  if(el('sa2')) new Chart(el('sa2'), {type:'bar', data:{labels:['Percussive','Electrical','CO₂ narcosis','Air asphyxia','Ice slurry'],
+    datasets:[{data:[0.3,1,360,600,900], backgroundColor:[TEAL,TEAL,POOR,POOR,POOR], borderRadius:6}]},
+    options:{indexAxis:'y', plugins:{legend:{display:false}, tooltip:{callbacks:{label:function(x){var s=x.parsed.x;return s<2?'≈ immediate / <1 s':(s>=60?(s/60)+' min':s+' s');}}}},
+      scales:{x:{type:'logarithmic', grid:grid, title:{display:true,text:'seconds to insensibility (log)'}}, y:{grid:{display:false}}}}});
+
+  if(el('sa3')) new Chart(el('sa3'), {type:'bar', data:{labels:['Atlantic salmon','Rainbow trout','European sea bass','Common carp','Nile tilapia','Gilthead sea bream'],
+    datasets:[{data:[1,1,1,1,1,0.06], backgroundColor:[TEAL,TEAL,TEAL,TEAL,TEAL,POOR], borderRadius:6}]},
+    options:{indexAxis:'y', plugins:{legend:{display:false}, tooltip:{callbacks:{label:function(x){return x.parsed.x>0.5?'Published measured spec':'NO published spec (borrowed from sea bass)';}}}},
+      scales:{x:{grid:grid, min:0, max:1.05, ticks:{callback:function(v){return v>=1?'has spec':(v<=0.1?'none':'');}}}, y:{grid:{display:false}}}}});
+
+  if(el('sa4')) new Chart(el('sa4'), {type:'bar', data:{labels:['Salmon — EEG recovery','Carp — VER onset','Carp — behavioural recovery'],
+    datasets:[{data:[44,30,540], backgroundColor:[WARN,WARN,POOR], borderRadius:6}]},
+    options:{indexAxis:'y', plugins:{legend:{display:false}, tooltip:{callbacks:{label:function(x){var s=x.parsed.x;return s>=60?(s/60)+' min after stun':s+' s after stun';}}}},
+      scales:{x:{type:'logarithmic', grid:grid, title:{display:true,text:'seconds until recovery can begin (log) — target ≤15 s'}}, y:{grid:{display:false}}}}});
+
+  if(el('sa5')) new Chart(el('sa5'), {type:'bar', data:{labels:['EEG (cortical)','Visual evoked response','Opercular / ventilation','Vestibulo-ocular (eye-roll)','Body movement / balance'],
+    datasets:[{label:'Lab-only (gold standard)', data:[100,95,null,null,null], backgroundColor:DEEP, borderRadius:6},
+              {label:'Field-usable proxy', data:[null,null,72,55,30], backgroundColor:FOAM, borderRadius:6}]},
+    options:{indexAxis:'y', plugins:{legend:{display:true, position:'bottom'}, tooltip:{callbacks:{label:function(x){return x.dataset.label+' — reliability '+x.parsed.x+'/100';}}}},
+      scales:{x:{grid:grid, min:0, max:100, title:{display:true,text:'relative reliability — qualitative ranking, not a measured score'}}, y:{grid:{display:false}}}}});
+});
+</script>
+<script src="scripts/site.js"></script>
+</body>
+</html>

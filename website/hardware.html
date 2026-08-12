@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Hardware design — StunAssure</title>
+<meta name="description" content="The StunAssure hardware design: a sub-$100 inline stun-dose + recovery logger, a fish-conductivity 'dummy-fish' phantom, and a contact Echo-Stun evoked-response rig — with bills of materials, safety notes, and deployment tiers." />
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2.5' y='2.5' width='27' height='27' rx='9' fill='none' stroke='%231F6F6D' stroke-width='1.6'/%3E%3Cpath d='M9 13.2l3.4 3.4L20 8.8' fill='none' stroke='%231F6F6D' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M8.5 21c2-2.2 4.5-2.2 6.5 0s4.5 2.2 6.5 0' fill='none' stroke='%233BAAA6' stroke-width='1.8' stroke-linecap='round'/%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles/site.css?v=20260619" />
+<link rel="canonical" href="https://responsiblesystemslab.org/hardware.html" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Responsible Systems Lab" />
+<meta property="og:title" content="Hardware design — StunAssure" />
+<meta property="og:description" content="A sub-$100 inline stun logger, a fish-conductivity phantom, and a contact Echo-Stun rig — designed, costed, safety-first." />
+<meta property="og:url" content="https://responsiblesystemslab.org/hardware.html" />
+<meta property="og:image" content="https://responsiblesystemslab.org/assets/og-stunassure.png" />
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.6/dist/chart.umd.min.js" defer></script>
+<script src="scripts/sa-charts.js?v=20260702b" defer></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+ {"@type":"Organization","@id":"https://responsiblesystemslab.org/#org","name":"Responsible Systems Lab","url":"https://responsiblesystemslab.org/","email":"contact@responsiblesystemslab.org"},
+ {"@type":"ResearchProject","@id":"https://responsiblesystemslab.org/#stunassure","name":"StunAssure","url":"https://responsiblesystemslab.org/stunassure.html","parentOrganization":{"@id":"https://responsiblesystemslab.org/#org"},"description":"A low-cost, fail-safe verification and audit layer that documents whether electrical stunning worked on fish-processing lines."},
+ {"@type":"TechArticle","headline":"Hardware design — StunAssure verification stack","url":"https://responsiblesystemslab.org/hardware.html","isPartOf":{"@id":"https://responsiblesystemslab.org/#stunassure"},"about":["fish stunning hardware","ESP32","water conductivity sensing","bill of materials","Echo-Stun"],"publisher":{"@id":"https://responsiblesystemslab.org/#org"}}
+]}
+</script>
+</head>
+<body>
+
+<header class="site-header" id="header">
+  <div class="container nav">
+    <a class="brand" href="stunassure.html">
+      <img src="assets/logo-primary.png" alt="StunAssure logo" />
+      <span>StunAssure<small>A Responsible Systems Lab project</small></span>
+    </a>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="stunassure.html">Home</a></li>
+        <li><a href="approach.html">Approach</a></li>
+        <li><a href="demo.html">Demo</a></li>
+        <li><a href="architecture.html">Architecture</a></li>
+        <li><a href="hardware.html">Hardware</a></li>
+        <li><a href="state-of-the-art.html">State of the art</a></li>
+        <li><a href="roadmap.html">Roadmap</a></li>
+        <li><a href="team.html">Team</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn-outline nav-cta" href="team.html#contact">Collaborate</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<main id="top">
+
+<section class="page-hero">
+  <div class="container">
+    <div class="crumbs"><a href="stunassure.html">StunAssure</a> → Hardware design</div>
+    <span class="eyebrow">Hardware design</span>
+    <h1>Cheap, isolated, <em>buildable</em>.</h1>
+    <p>Three small devices give the verification stack its physical senses. This is a costed design — what we will build — not yet a built product. Every measurement is galvanically isolated and non-intrusive.</p>
+  </div>
+</section>
+
+<!-- THE GAP -->
+<section id="gap">
+  <div class="container">
+    <div class="statement reveal">
+      <span class="eyebrow">Why hardware</span>
+      <h2>Poultry has a stun monitor. Fish has <em>nothing</em>.</h2>
+      <p>Poultry processing uses a regulator-accepted inline stun-current monitor; for fish there is no field dose-verification at all — guidance recommends parameters but is silent on how operators confirm delivery, and the required field strength depends on water conductivity. We close that with three cheap devices.</p>
+    </div>
+  </div>
+</section>
+
+<!-- BUILD ITEM 1 -->
+<section id="logger" class="section-alt">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Build item 1 · ready now</span>
+      <h2>Inline stun-dose + recovery logger</h2>
+      <p>The fish equivalent of the poultry stun-current monitor — a sub-$100 box that clips onto an existing stunner and measures, per batch, the dose delivered and the stun→bleed interval. This is the first device we build.</p>
+    </div>
+    <div class="tbl-wrap reveal">
+      <table class="dtable">
+        <thead><tr><th>Component</th><th>Example part</th><th>Role</th><th class="num">Indicative €</th></tr></thead>
+        <tbody>
+          <tr><th>MCU / edge</th><td>ESP32-S3 dev board</td><td>acquisition, on-device verdict, BLE/MQTT</td><td class="num">8–12</td></tr>
+          <tr><th>Voltage sense (isolated)</th><td>differential probe + ADS1115 16-bit ADC</td><td>stun voltage, galvanically isolated</td><td class="num">6–10</td></tr>
+          <tr><th>Current sense</th><td>split-core CT clamp</td><td>stun current (rms), non-intrusive</td><td class="num">8–15</td></tr>
+          <tr><th>Field electrodes</th><td>graphite/Ti pair, fixed spacing</td><td>in-water field-strength proxy (V/cm)</td><td class="num">5–10</td></tr>
+          <tr><th>Conductivity (EC)</th><td>analog EC probe</td><td>conductivity for field interpretation</td><td class="num">12–20</td></tr>
+          <tr><th>Water temperature</th><td>DS18B20 waterproof</td><td>context + correction</td><td class="num">2–4</td></tr>
+          <tr><th>Interval input</th><td>button / opto line-trigger</td><td>stun→bleed timing</td><td class="num">1–3</td></tr>
+          <tr><th>Power + isolation</th><td>isolated DC-DC, RCD-protected</td><td>safety</td><td class="num">8–15</td></tr>
+          <tr><th>Enclosure</th><td>IP65 box + cable glands</td><td>wet environment</td><td class="num">6–12</td></tr>
+        </tbody>
+        <caption>Indicative bill of materials. Target: a sub-$100 device that turns an existing stunner into a verified one.</caption>
+      </table>
+    </div>
+    <p class="lead reveal" style="margin-top:1.4rem">Firmware computes rms current, peak field and duration at the stun event, reads conductivity and temperature, runs the recovery-clock, and produces the same signed batch record the <a href="demo.html">software core</a> already generates — buffering offline and syncing when a link appears.</p>
+  </div>
+</section>
+
+<!-- BUILD ITEM 2 -->
+<section id="phantom">
+  <div class="container">
+    <div class="grid-2" style="align-items:center">
+      <div class="reveal">
+        <span class="eyebrow">Build item 2 · novel</span>
+        <h2>The “dummy-fish” conductivity phantom</h2>
+        <p>A passive strip can’t honestly read field strength in conductivity-varying water — so we don’t use one. Instead, a reusable fish-shaped phantom, tuned to fish-tissue conductivity with embedded electrodes, runs through the stunner periodically to confirm the field actually delivers into a fish-like load.</p>
+        <p>It is a <strong>go/no-go commissioning check</strong>: if the internal field is below the species target, the stunner is mis-set <em>before</em> any fish is harmed. No fish-conductivity phantom at stun frequencies exists today — a cheap, reusable, novel opening we can build first.</p>
+      </div>
+      <div class="card dark reveal d1">
+        <h3>What it is</h3>
+        <ul class="tag-list">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5 5L20 7" stroke-linecap="round" stroke-linejoin="round"/></svg> Agar/saline gel, fish-shaped, conductivity-tuned</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5 5L20 7" stroke-linecap="round" stroke-linejoin="round"/></svg> Embedded head/tail electrodes measure internal field</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5 5L20 7" stroke-linecap="round" stroke-linejoin="round"/></svg> Tiny logger or electrochromic strip = go/no-go readout</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5 5L20 7" stroke-linecap="round" stroke-linejoin="round"/></svg> Per-species / per-water reference card &amp; SOP</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BUILD ITEM 3 -->
+<section id="echostun" class="section-alt">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Build item 3 · the differentiator (research stretch)</span>
+      <h2>Echo-Stun contact evoked-response rig</h2>
+      <p>The bold layer: a cheap proxy for lab-only EEG. A small probe pulse, then we measure the <em>suppression</em> of the evoked muscle/neural response — a 0–100 “insensibility index,” modelled on the human BIS anesthesia monitor that proves such an index is deployable.</p>
+    </div>
+    <div class="tbl-wrap reveal">
+      <table class="dtable">
+        <thead><tr><th>Component</th><th>Example part</th><th>Role</th><th class="num">Indicative €</th></tr></thead>
+        <tbody>
+          <tr><th>Biopotential front-end</th><td>ADS1299 (8-ch, 24-bit) / AD8232</td><td>µV-scale evoked-response capture</td><td class="num">10–40</td></tr>
+          <tr><th>Stimulus driver</th><td>isolated probe-pulse generator</td><td>evoke a response to test suppression</td><td class="num">10–20</td></tr>
+          <tr><th>Electrodes</th><td>Ag/AgCl or dry contact pads</td><td>skin-surface pickup</td><td class="num">2–6</td></tr>
+          <tr><th>Edge compute</th><td>Raspberry Pi 5 / Jetson Orin Nano</td><td>signal processing, BIS-like index</td><td class="num">70–250</td></tr>
+          <tr><th>Shielding / isolation</th><td>Faraday + medical-grade isolation</td><td>SNR + safety</td><td class="num">15–40</td></tr>
+        </tbody>
+        <caption>Contact/skin-surface variant first (de-risked). Fully-contactless in-water sensing is unproven — water shunts the signal — and is treated as a funded research question, validated against expert/EEG ground truth.</caption>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- SAFETY -->
+<section id="safety">
+  <div class="container">
+    <div class="callout reveal" style="border-left-color:#d65b5b">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="color:#d65b5b"><path d="M12 3l9 16H3z" stroke-linejoin="round"/><path d="M12 10v4M12 17h0" stroke-linecap="round"/></svg>
+      <p><strong>Safety first.</strong> In-water electrical stunning involves lethal voltages and currents. All sensing is galvanically isolated and non-intrusive (clamp/inline taps that never break the stun circuit). Any bench work with energised stunners requires a qualified electrical engineer and proper isolation / RCD protection. The Echo-Stun rig is optional and never gates the cheaper, lower-risk tiers.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TIERS -->
+<section id="tiers" class="section-alt">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Deployment tiers</span>
+      <h2>Automation levels — not different welfare standards.</h2>
+      <p>The same fail-safe logic runs at every tier. Lower tiers are <em>more conservative</em> (more “check manually”), never less safe. We never relax welfare by budget or country.</p>
+    </div>
+    <div class="tiers">
+      <div class="tier reveal">
+        <span class="tier-no">Tier 1</span><h3>Lite</h3>
+        <p class="who">Small / low-resource farms &amp; vessels</p>
+        <div class="cost">€0–200</div>
+        <ul><li>Phone/tablet app</li><li>Manual recovery-clock</li><li>Species checklist &amp; SOP</li><li>Signed batch record</li></ul>
+      </div>
+      <div class="tier featured reveal d1">
+        <span class="badge">Best first build</span>
+        <span class="tier-no">Tier 2</span><h3>Sensor Box</h3>
+        <p class="who">Medium farms / processors</p>
+        <div class="cost">€100–2,000</div>
+        <ul><li>Inline dose + recovery logger</li><li>Dummy-fish phantom</li><li>Drift alarms</li><li>Audit-ready reports</li></ul>
+      </div>
+      <div class="tier reveal d2">
+        <span class="tier-no">Tier 3</span><h3>Camera / Echo-Stun</h3>
+        <p class="who">Advanced sites</p>
+        <div class="cost">€2k–10k+</div>
+        <ul><li>+ camera and/or</li><li>Echo-Stun index</li><li>Edge inference</li><li>Higher assurance</li></ul>
+      </div>
+      <div class="tier reveal d3">
+        <span class="tier-no">Tier 4</span><h3>Validation</h3>
+        <p class="who">Labs / certifiers</p>
+        <div class="cost">Project-based</div>
+        <ul><li>EEG/VER collaboration</li><li>Expert labels</li><li>Open benchmark</li><li>Species evidence DB</li></ul>
+      </div>
+    </div>
+    <p class="tiers-note">Recommended first bench build: <strong>Item 1 + Item 2</strong> — real welfare value and an auditable record now, with zero live fish.</p>
+    <figure class="sa-fig reveal">
+      <h3>Deployment cost tiers</h3>
+      <p class="sa-sub">Automation levels — not different welfare standards. Log scale (site cost €).</p>
+      <div class="sa-box"><canvas class="sa-canvas" data-chart="costTiers" aria-label="Ascending deployment cost tiers from a phone app to a validation programme"></canvas></div>
+      <figcaption>Hardware / BOM site cost: Lite €0–200 · Sensor Box €100–2,000 · Camera/Echo-Stun €2,000–10,000 · Validation project-based. (Full <a href="approach.html#tiers">deployment tiers</a> — incl. software, setup and support — are quoted separately in USD.)</figcaption>
+    </figure>
+    <figure class="sa-fig reveal">
+      <h3>Cost leverage vs the alternative</h3>
+      <p class="sa-sub">A sub-$100 verifier rides on top of an existing ~€150k in-water stunner. Log scale (€).</p>
+      <div class="sa-box"><canvas class="sa-canvas" data-chart="costLeverage" aria-label="Log-scale comparison of an in-water stunner cost versus the StunAssure logger cost"></canvas></div>
+      <figcaption>In-water stunner install ~€150k/vessel (manufacturer survey incl. Ace Aquatec — EA Forum 2024); StunAssure inline logger €60–110 — assurance added on top for a small fraction of the stunner's cost.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- EXISTS VS BUILD -->
+<section id="vs">
+  <div class="container">
+    <div class="grid-2">
+      <div class="card reveal"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3>What already exists</h3><p>In-water stunners; poultry inline current monitors; lab EEG/VER; cheap biopotential front-ends; the ESP32 + sensor ecosystem. We build <em>on</em> mature components.</p></div>
+      <div class="card reveal d1"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 2v20M2 12h20" stroke-linecap="round"/></svg></div><h3>What we build</h3><p>The <em>fish</em> inline dose + interval logger; the fish-conductivity phantom; the contact Echo-Stun index — none of which exist for fish today.</p></div>
+    </div>
+    <div class="hero-actions" style="margin-top:2rem">
+      <a class="btn btn-primary" href="demo.html">See the logic run
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a class="btn btn-outline" href="roadmap.html">How it’s sequenced →</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer" id="contact">
+  <div class="container">
+    <div class="footer-cta reveal">
+      <h2>We're looking for welfare &amp; aquaculture collaborators.</h2>
+      <p>Electronics, sensing, aquaculture or fish-welfare expertise especially welcome — help us turn these designs into validated devices.</p>
+      <a class="btn btn-primary" href="mailto:contact@responsiblesystemslab.org">Get in touch
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16v12H4z M4 7l8 6 8-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+    <div class="footer-inner">
+      <div>
+        <div class="footer-brand"><span class="fmark" aria-hidden="true"><svg viewBox="0 0 36 36" fill="none"><rect x="1" y="1" width="34" height="34" rx="11" fill="#A8D5CF"/><path d="M10.5 16l4.2 4.2L24 10.8" stroke="#0D3B3E" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 24.5c2.7-2.9 5.6-2.9 8.3 0s5.6 2.9 8.3 0" stroke="#1F6F6D" stroke-width="2.2" stroke-linecap="round"/></svg></span> StunAssure</div>
+        <p class="disclaimer">Hardware designs are costed concepts for a research prototype, not a product offering. Electrical work requires qualified engineering and appropriate safety measures.</p>
+      </div>
+      <div class="footer-cols">
+        <div>
+          <h4>Project</h4>
+          <ul>
+            <li><a href="approach.html">Approach &amp; technology</a></li>
+            <li><a href="demo.html">Live demo</a></li>
+            <li><a href="architecture.html">Architecture</a></li>
+            <li><a href="hardware.html">Hardware design</a></li>
+            <li><a href="state-of-the-art.html">State of the art</a></li>
+            <li><a href="responsible-ai.html">Responsible AI</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>More</h4>
+          <ul>
+            <li><a href="roadmap.html">Roadmap</a></li>
+            <li><a href="team.html">Team</a></li>
+            <li><a href="team.html#contact">Collaborate</a></li>
+            <li><a href="index.html">Responsible Systems Lab ↗</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 StunAssure project team.</span>
+      <span>Practical · fail-safe · evidence-informed.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="scripts/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Approach &amp; Technology — StunAssure</title>
+<meta name="description" content="The StunAssure approach: a multi-layer verification model, a buildable system architecture, a step-by-step assurance workflow, and tiered low-cost deployment." />
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2.5' y='2.5' width='27' height='27' rx='9' fill='none' stroke='%231F6F6D' stroke-width='1.6'/%3E%3Cpath d='M9 13.2l3.4 3.4L20 8.8' fill='none' stroke='%231F6F6D' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M8.5 21c2-2.2 4.5-2.2 6.5 0s4.5 2.2 6.5 0' fill='none' stroke='%233BAAA6' stroke-width='1.8' stroke-linecap='round'/%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles/site.css?v=20260619a" />
+<link rel="canonical" href="https://responsiblesystemslab.org/approach.html" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Responsible Systems Lab" />
+<meta property="og:title" content="Approach &amp; Technology — StunAssure" />
+<meta property="og:description" content="The StunAssure approach: a multi-layer verification model, a buildable system architecture, a step-by-step assurance workflow, and tiered low-cost deployment." />
+<meta property="og:url" content="https://responsiblesystemslab.org/approach.html" />
+<meta property="og:image" content="https://responsiblesystemslab.org/assets/og-stunassure.png" />
+<meta property="og:image:width" content="1200" /><meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Approach &amp; Technology — StunAssure" />
+<meta name="twitter:description" content="The StunAssure approach: a multi-layer verification model, a buildable system architecture, a step-by-step assurance workflow, and tiered low-cost deployment." />
+<meta name="twitter:image" content="https://responsiblesystemslab.org/assets/og-stunassure.png" />
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.6/dist/chart.umd.min.js" defer></script>
+<script src="scripts/sa-charts.js?v=20260702b" defer></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+ {"@type":"Organization","@id":"https://responsiblesystemslab.org/#org","name":"Responsible Systems Lab","url":"https://responsiblesystemslab.org/","email":"contact@responsiblesystemslab.org"},
+ {"@type":"ResearchProject","@id":"https://responsiblesystemslab.org/#stunassure","name":"StunAssure","url":"https://responsiblesystemslab.org/stunassure.html","parentOrganization":{"@id":"https://responsiblesystemslab.org/#org"},"description":"A low-cost, fail-safe verification and audit layer that documents whether electrical stunning worked on fish-processing lines. Not a new stunning method; does not claim to detect consciousness."},
+ {"@type":"TechArticle","headline":"Approach & technology — StunAssure","url":"https://responsiblesystemslab.org/approach.html","isPartOf":{"@id":"https://responsiblesystemslab.org/#stunassure"},"about":["verification stack","fail-safe AI","aquaculture welfare monitoring","fish stunning"],"publisher":{"@id":"https://responsiblesystemslab.org/#org"}}
+]}
+</script>
+</head>
+<body>
+
+<header class="site-header" id="header">
+  <div class="container nav">
+    <a class="brand" href="stunassure.html"><img src="assets/logo-primary.png" alt="StunAssure logo" /><span>StunAssure<small>Fish welfare assurance</small></span></a>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="stunassure.html">Home</a></li>
+        <li><a href="approach.html">Approach</a></li>
+        <li><a href="demo.html">Demo</a></li>
+        <li><a href="architecture.html">Architecture</a></li>
+        <li><a href="hardware.html">Hardware</a></li>
+        <li><a href="state-of-the-art.html">State of the art</a></li>
+        <li><a href="roadmap.html">Roadmap</a></li>
+        <li><a href="team.html">Team</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn-outline nav-cta" href="team.html#contact">Collaborate</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="container">
+    <p class="crumbs reveal"><a href="stunassure.html">Home</a> / Approach &amp; technology</p>
+    <span class="eyebrow reveal">Approach &amp; technology</span>
+    <h1 class="reveal d1">A modular verification system — <em>not</em> a black box.</h1>
+    <p class="reveal d2">StunAssure combines video, environmental and process sensors, stunner parameters, and expert-reviewed indicators into a conservative, explainable risk-detection and audit platform. The goal is not to replace stunning technology — it is to make humane stunning measurable, adaptable, and practical across economic contexts.</p>
+  </div>
+</section>
+
+<!-- SOLUTION LAYERS -->
+<section id="solution">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">The model</span>
+      <h2>Four practical layers, fused into one signal.</h2>
+      <p>The innovation is not one AI camera — it is the layered architecture that combines weak signals and stays fail-safe.</p>
+    </div>
+    <div class="layers">
+      <div class="layer reveal">
+        <h3>Protocol layer</h3>
+        <p>Manual checklist, stun-to-kill timer, species profile, and standard operating procedures — usable offline and in low-resource settings.</p>
+      </div>
+      <div class="layer reveal d1">
+        <h3>Sensor layer</h3>
+        <p>Temperature, conductivity/salinity, dissolved oxygen where needed, stunner settings, and batch timing — logged without modifying existing stunners.</p>
+      </div>
+      <div class="layer reveal d2">
+        <h3>Decision-support layer</h3>
+        <p>Conservative, explainable risk scoring that returns a simple, fail-safe signal: <em>likely acceptable</em>, <em>uncertain — check manually</em>, or <em>intervention needed</em>.</p>
+      </div>
+      <div class="layer optional reveal d3">
+        <h3>Camera-assist layer</h3>
+        <p>Detects visible warning signs — coordinated movement, continued ventilation, recovery indicators — as an optional higher tier, never as a consciousness verdict.</p>
+      </div>
+    </div>
+    <div class="callout reveal">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7l8-4z" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <p><strong>Honesty first.</strong> The system does not claim that video alone proves consciousness. It is designed to <em>flag risk</em> and support validated decision-making with domain experts — never to certify "safe" on weak evidence. <a href="responsible-ai.html">See our Responsible AI boundary →</a></p>
+    </div>
+    <figure class="sa-fig reveal">
+      <h3>The verification stack, by readiness</h3>
+      <p class="sa-sub">The science largely exists — only the verification layer is new. Backbone is ready now; Echo-Stun is the funded research stretch.</p>
+      <div class="sa-box"><canvas class="sa-canvas" data-chart="stackReadiness" aria-label="Readiness of the four verification-stack layers: StunDose, Recovery-Clock, Welfare-by-Sampling, Echo-Stun"></canvas></div>
+      <figcaption>Low scientific risk / high implementation novelty: measure dose → verify insensibility → enforce recovery window → certify batch. Readiness is the team's qualitative assessment, not a measured metric.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- SYSTEM DIAGRAM -->
+<section id="system" class="section-alt">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">System architecture</span>
+      <h2>Inputs → risk engine → operator alert → audit report.</h2>
+      <p>A buildable architecture: practical inputs feed a conservative risk engine that produces a clear operator signal and a saved batch record.</p>
+    </div>
+    <div class="diagram-wrap reveal">
+      <svg viewBox="0 0 1080 360" role="img" aria-label="System architecture diagram: inputs feed a risk engine which produces operator alerts and an audit report">
+        <defs>
+          <linearGradient id="engine" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1F6F6D"/><stop offset="1" stop-color="#0D3B3E"/></linearGradient>
+          <marker id="arrow" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#3BAAA6"/></marker>
+        </defs>
+        <text x="150" y="34" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="700" letter-spacing="1.5" fill="#1F6F6D">INPUTS</text>
+        <g font-family="Inter, sans-serif" font-size="14" fill="#102A2C">
+          <g><rect x="20" y="52" width="260" height="42" rx="10" fill="#FFFFFF" stroke="#D9E6E3"/><text x="42" y="78">Stunner parameters</text></g>
+          <g><rect x="20" y="104" width="260" height="42" rx="10" fill="#FFFFFF" stroke="#D9E6E3"/><text x="42" y="130">Water conditions</text></g>
+          <g><rect x="20" y="156" width="260" height="42" rx="10" fill="#FFFFFF" stroke="#D9E6E3"/><text x="42" y="182">Species profile</text></g>
+          <g><rect x="20" y="208" width="260" height="42" rx="10" fill="#FFFFFF" stroke="#D9E6E3"/><text x="42" y="234">Timing &amp; throughput</text></g>
+          <g><rect x="20" y="260" width="260" height="42" rx="10" fill="#FFFFFF" stroke="#D9E6E3"/><text x="42" y="286">Manual observations</text></g>
+          <g><rect x="20" y="312" width="260" height="42" rx="10" fill="#EEF5F3" stroke="#D9E6E3" stroke-dasharray="5 4"/><text x="42" y="338" fill="#5D7073">Optional camera</text></g>
+        </g>
+        <g stroke="#3BAAA6" stroke-width="2" fill="none" marker-end="url(#arrow)">
+          <path d="M280,73 C340,73 360,180 412,180"/><path d="M280,125 C340,125 365,180 412,180"/><path d="M280,177 L412,179"/><path d="M280,229 C340,229 365,180 412,180"/><path d="M280,281 C340,281 360,180 412,180"/>
+        </g>
+        <g>
+          <rect x="415" y="120" width="230" height="120" rx="18" fill="url(#engine)"/>
+          <text x="530" y="170" text-anchor="middle" font-family="Playfair Display, serif" font-size="22" fill="#FFFFFF">Risk engine</text>
+          <text x="530" y="196" text-anchor="middle" font-family="Inter, sans-serif" font-size="12.5" fill="#A8D5CF">rules + conservative scoring</text>
+          <text x="530" y="214" text-anchor="middle" font-family="Inter, sans-serif" font-size="12.5" fill="#A8D5CF">(+ optional model)</text>
+        </g>
+        <g stroke="#3BAAA6" stroke-width="2" fill="none" marker-end="url(#arrow)">
+          <path d="M645,150 C700,150 720,96 770,96"/><path d="M645,180 L770,180"/><path d="M645,210 C700,210 720,264 770,264"/>
+        </g>
+        <text x="900" y="34" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="700" letter-spacing="1.5" fill="#1F6F6D">OPERATOR ALERT</text>
+        <g font-family="Inter, sans-serif" font-size="14" font-weight="600">
+          <g><rect x="772" y="74" width="288" height="44" rx="10" fill="#EAF5E4" stroke="#58A63E"/><circle cx="798" cy="96" r="6" fill="#58A63E"/><text x="816" y="101" fill="#2E8B57">Pass — likely acceptable</text></g>
+          <g><rect x="772" y="158" width="288" height="44" rx="10" fill="#E4F1F8" stroke="#5BB6D6"/><circle cx="798" cy="180" r="6" fill="#5BB6D6"/><text x="816" y="185" fill="#006D9C">Uncertain — check manually</text></g>
+          <g><rect x="772" y="242" width="288" height="44" rx="10" fill="#FBE9E9" stroke="#d36b6b"/><circle cx="798" cy="264" r="6" fill="#d36b6b"/><text x="816" y="269" fill="#b34a4a">Fail — intervene / re-stun</text></g>
+        </g>
+        <g><rect x="772" y="306" width="288" height="44" rx="10" fill="#0D3B3E"/><text x="916" y="333" text-anchor="middle" font-family="Inter, sans-serif" font-size="13.5" font-weight="600" fill="#A8D5CF">↳ Batch audit report (saved locally / cloud)</text></g>
+        <path d="M916,286 L916,306" stroke="#3BAAA6" stroke-width="2" marker-end="url(#arrow)"/>
+      </svg>
+      <div class="flow-legend">
+        <span><i style="background:#58A63E"></i> Pass</span>
+        <span><i style="background:#5BB6D6"></i> Uncertain → manual check</span>
+        <span><i style="background:#d36b6b"></i> Fail → intervention</span>
+        <span><i style="background:#0D3B3E"></i> Audit record</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="workflow">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">How it works</span>
+      <h2>From observation to welfare assurance.</h2>
+      <p>A multi-layer assurance workflow for detecting, documenting, and reducing fish-welfare risks during stunning and slaughter. The system does not claim to determine consciousness — it surfaces observable welfare-risk indicators and the cases that need human review.</p>
+    </div>
+
+    <ol class="flow-ribbon reveal" aria-label="Workflow at a glance">
+      <li>Observe</li><li>Measure</li><li>Synchronize</li><li>Detect&nbsp;risk</li><li>Explain</li><li>Review</li><li>Improve</li>
+    </ol>
+
+    <ol class="steps">
+      <li class="step reveal">
+        <div class="step-top"><span class="step-no">01</span><span class="step-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z" stroke-linejoin="round"/><circle cx="12" cy="12" r="3"/></svg></span></div>
+        <h3>Observe</h3><p class="what">Cameras capture visible post-stun movement, handling, posture, and process flow.</p><p class="why"><span>Why</span> Surfaces observable signs that may warrant review.</p>
+      </li>
+      <li class="step reveal d1">
+        <div class="step-top"><span class="step-no">02</span><span class="step-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 13a9 9 0 0 1 18 0" stroke-linecap="round"/><path d="M12 13l4-3" stroke-linecap="round"/><path d="M3 13v3M21 13v3" stroke-linecap="round"/></svg></span></div>
+        <h3>Measure</h3><p class="what">Sensors and process logs record water temperature, conductivity, pH, timing, batch data, and stunner settings where available.</p><p class="why"><span>Why</span> Stunning effectiveness depends on real conditions, not equipment alone.</p>
+      </li>
+      <li class="step reveal d2">
+        <div class="step-top"><span class="step-no">03</span><span class="step-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M21 9a9 9 0 0 0-15-4.5L3 7" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 4v3h3" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 15a9 9 0 0 0 15 4.5L21 17" stroke-linecap="round" stroke-linejoin="round"/><path d="M21 20v-3h-3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+        <h3>Synchronize</h3><p class="what">Video, sensor data, operator notes, and process events are aligned on one timeline.</p><p class="why"><span>Why</span> Creates structured evidence instead of isolated observations.</p>
+      </li>
+      <li class="step reveal">
+        <div class="step-top"><span class="step-no">04</span><span class="step-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7l8-4z" stroke-linejoin="round"/><path d="M12 8v4M12 15h.01" stroke-linecap="round"/></svg></span></div>
+        <h3>Detect risk</h3><p class="what">Rules and optional models flag observable welfare-risk indicators — unexpected movement, delayed handling, process deviations, or missing data.</p><p class="why"><span>Why</span> Supports early detection of problems, not consciousness verdicts.</p>
+      </li>
+      <li class="step reveal d1">
+        <div class="step-top"><span class="step-no">05</span><span class="step-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01" stroke-linecap="round"/></svg></span></div>
+        <h3>Explain</h3><p class="what">Each alert shows the reason: what was detected, when it happened, and which data supported the flag.</p><p class="why"><span>Why</span> Keeps the system transparent and reviewable.</p>
+      </li>
+      <li class="step reveal d2">
+        <div class="step-top"><span class="step-no">06</span><span class="step-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M9 11l3 3 6-6" stroke-linecap="round" stroke-linejoin="round"/><path d="M20 12v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h9" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+        <h3>Review</h3><p class="what">Operators or welfare advisors validate flagged clips and uncertain cases.</p><p class="why"><span>Why</span> Keeps expert human judgment central to every decision.</p>
+      </li>
+      <li class="step reveal">
+        <div class="step-top"><span class="step-no">07</span><span class="step-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 17l6-6 4 4 7-7" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 8h6v6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+        <h3>Improve</h3><p class="what">Reports help facilities correct problems, refine procedures, and document welfare assurance.</p><p class="why"><span>Why</span> Turns monitoring into continuous welfare improvement.</p>
+      </li>
+    </ol>
+
+    <figure class="loop-wrap reveal">
+      <svg viewBox="0 0 1180 230" role="img" aria-label="Continuous assurance loop: Observe, Measure, Synchronize, Detect risk, Explain, Review, Improve — feeding back into Observe.">
+        <defs>
+          <marker id="wf-arrow" markerWidth="9" markerHeight="9" refX="6.5" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#3BAAA6"/></marker>
+          <linearGradient id="wf-rail" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#1F6F6D"/><stop offset="1" stop-color="#3BAAA6"/></linearGradient>
+        </defs>
+        <line x1="70" y1="78" x2="1110" y2="78" stroke="url(#wf-rail)" stroke-width="3"/>
+        <g stroke="#3BAAA6" stroke-width="2.5" marker-end="url(#wf-arrow)">
+          <line x1="96" y1="78" x2="226" y2="78"/><line x1="270" y1="78" x2="400" y2="78"/><line x1="444" y1="78" x2="574" y2="78"/><line x1="618" y1="78" x2="748" y2="78"/><line x1="792" y1="78" x2="922" y2="78"/><line x1="966" y1="78" x2="1096" y2="78"/>
+        </g>
+        <g font-family="Inter, sans-serif">
+          <g><circle cx="70" cy="78" r="22" fill="#0D3B3E"/><text x="70" y="84" text-anchor="middle" font-size="15" font-weight="700" fill="#A8D5CF">1</text><text x="70" y="124" text-anchor="middle" font-size="13" font-weight="600" fill="#102A2C">Observe</text></g>
+          <g><circle cx="248" cy="78" r="22" fill="#0D3B3E"/><text x="248" y="84" text-anchor="middle" font-size="15" font-weight="700" fill="#A8D5CF">2</text><text x="248" y="124" text-anchor="middle" font-size="13" font-weight="600" fill="#102A2C">Measure</text></g>
+          <g><circle cx="422" cy="78" r="22" fill="#0D3B3E"/><text x="422" y="84" text-anchor="middle" font-size="15" font-weight="700" fill="#A8D5CF">3</text><text x="422" y="124" text-anchor="middle" font-size="13" font-weight="600" fill="#102A2C">Synchronize</text></g>
+          <g><circle cx="596" cy="78" r="22" fill="#1F6F6D"/><text x="596" y="84" text-anchor="middle" font-size="15" font-weight="700" fill="#FFFFFF">4</text><text x="596" y="124" text-anchor="middle" font-size="13" font-weight="700" fill="#1F6F6D">Detect risk</text></g>
+          <g><circle cx="770" cy="78" r="22" fill="#0D3B3E"/><text x="770" y="84" text-anchor="middle" font-size="15" font-weight="700" fill="#A8D5CF">5</text><text x="770" y="124" text-anchor="middle" font-size="13" font-weight="600" fill="#102A2C">Explain</text></g>
+          <g><circle cx="944" cy="78" r="22" fill="#0D3B3E"/><text x="944" y="84" text-anchor="middle" font-size="15" font-weight="700" fill="#A8D5CF">6</text><text x="944" y="124" text-anchor="middle" font-size="13" font-weight="600" fill="#102A2C">Review</text></g>
+          <g><circle cx="1110" cy="78" r="22" fill="#58A63E"/><text x="1110" y="84" text-anchor="middle" font-size="15" font-weight="700" fill="#FFFFFF">7</text><text x="1110" y="124" text-anchor="middle" font-size="13" font-weight="600" fill="#2E8B57">Improve</text></g>
+        </g>
+        <path d="M1110,158 C1110,205 900,205 590,205 C280,205 70,205 70,158" fill="none" stroke="#58A63E" stroke-width="2.5" stroke-dasharray="6 5" marker-end="url(#wf-arrow)"/>
+        <text x="590" y="223" text-anchor="middle" font-family="Inter, sans-serif" font-size="12.5" font-weight="600" letter-spacing="0.06em" fill="#2E8B57">CONTINUOUS IMPROVEMENT LOOP</text>
+      </svg>
+    </figure>
+  </div>
+</section>
+
+<!-- DEPLOYMENT & COST TIERS -->
+<section id="tiers" class="section-alt">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Deployment &amp; cost tiers</span>
+      <h2>Affordable entry points — not lower welfare standards.</h2>
+      <p>Tiering creates affordable pathways toward better verification and process control. Lower-cost tiers are more conservative; they should never falsely certify fish as insensible.</p>
+    </div>
+    <div class="tiers">
+      <div class="tier reveal"><span class="tier-no">Tier 1</span><h3>Lite</h3><p class="who">Small farms &amp; low-resource settings</p><div class="cost">$500–$2,000</div><ul><li>Checklist app</li><li>Stun→kill timer</li><li>Species SOPs</li><li>Manual logs</li></ul></div>
+      <div class="tier featured reveal d1"><span class="badge">First prototype</span><span class="tier-no">Tier 2</span><h3>Sensor Box</h3><p class="who">Medium farms &amp; processors</p><div class="cost">$3,000–$10,000</div><ul><li>Water sensors</li><li>Stunner logging</li><li>Drift alarms</li><li>Audit reports</li></ul></div>
+      <div class="tier reveal d2"><span class="tier-no">Tier 3</span><h3>Camera Assist</h3><p class="who">Advanced sites</p><div class="cost">$10,000–$30,000</div><ul><li>Edge camera</li><li>Visual warning detection</li><li>Higher automation</li></ul></div>
+      <div class="tier reveal d3"><span class="tier-no">Tier 4</span><h3>Validation Mode</h3><p class="who">Researchers &amp; certifiers</p><div class="cost">Project-based</div><ul><li>Expert labels</li><li>Validation protocol</li><li>Benchmark data</li></ul></div>
+    </div>
+    <p class="tiers-note">Illustrative target ranges, not fixed prices.</p>
+  </div>
+</section>
+
+<!-- WHAT IT MEASURES -->
+<section id="signals">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">What the system measures</span>
+      <h2>Six signal layers, one fused risk picture.</h2>
+      <p>No single signal is trusted on its own. The risk engine fuses weak, complementary signals — and the parameters it logs are exactly the ones the welfare science says determine whether a stun actually works. <a href="state-of-the-art.html#parameters">See the underlying evidence →</a></p>
+    </div>
+    <div class="tbl-wrap reveal">
+      <table class="dtable">
+        <thead>
+          <tr><th scope="col">Layer</th><th scope="col">Signals captured</th><th scope="col">Why it matters</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">Visual</th><td>Post-stun movement, posture, equilibrium, ventilation / mouth movement, eye &amp; body response (where visible)</td><td>Non-invasive monitoring — but visible signs alone never prove unconsciousness.</td></tr>
+          <tr><th scope="row">Stunner / process</th><td>Voltage, current, frequency, exposure time, waveform, throughput, batch density</td><td>Electrical-stun efficacy depends directly on these parameters.</td></tr>
+          <tr><th scope="row">Environmental</th><td>Water temperature, dissolved O₂, salinity, pH, turbidity, conductivity</td><td>Conductivity sets the field strength a stun needs; the rest give context.</td></tr>
+          <tr><th scope="row">Expert / welfare</th><td>Advisor-reviewed indicators, species-specific rules, risk thresholds</td><td>Species-specific welfare is central to EFSA- and WOAH-style assessment.</td></tr>
+          <tr><th scope="row">Audit</th><td>Logs, video clips, sensor readings, alerts, generated reports</td><td>Evidence for farms, processors, vets, certifiers and regulators.</td></tr>
+          <tr><th scope="row">Learning</th><td>Model improvement from expert-reviewed cases</td><td>Builds a versioned dataset and improves over time — human in the loop.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- TECHNOLOGY STACK -->
+<section id="stack" class="section-alt">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Technology stack</span>
+      <h2>Built from low-cost, proven, open components.</h2>
+      <p>Nothing here is exotic. The whole system runs on commodity edge hardware and mature open-source software, so it stays affordable and can operate fully offline at a remote farm or vessel.</p>
+    </div>
+    <div class="tbl-wrap reveal">
+      <table class="dtable">
+        <thead>
+          <tr><th scope="col">Layer</th><th scope="col">Components</th><th scope="col">Role</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">Edge compute</th><td class="num">Raspberry Pi 5 → NVIDIA Jetson Orin Nano</td><td>On-site inference; offline-capable; Pi for the Lite tier, Jetson when vision is added.</td></tr>
+          <tr><th scope="row">Sensors &amp; MCU</th><td>ESP32 · DS18B20 temp · EC/salinity · pH · dissolved-O₂ · turbidity · current/voltage</td><td>Low-cost environmental and process logging without modifying the stunner.</td></tr>
+          <tr><th scope="row">Vision</th><td>USB / IP industrial camera · OpenCV · YOLOv8/v11</td><td>Optional edge detection &amp; tracking of visible post-stun warning signs.</td></tr>
+          <tr><th scope="row">Data &amp; messaging</th><td>MQTT · TimescaleDB / InfluxDB · PostgreSQL</td><td>Time-synchronised, multimodal evidence on one timeline.</td></tr>
+          <tr><th scope="row">Application</th><td>FastAPI · Next.js / React · Grafana · Docker</td><td>Operator dashboard, alerts, batch audit reports, containerised deployment.</td></tr>
+          <tr><th scope="row">ML ops</th><td>PyTorch · scikit-learn · Label Studio/CVAT · MLflow · DVC · ONNX/TensorRT</td><td>Conservative models, human-in-the-loop labelling, versioned datasets.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout reveal">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7l8-4z" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <p><strong>Buy cheap, build smart.</strong> We build the data pipeline and dashboard first on simulated stunner data and low-cost sensors; expensive hardware — industrial cameras, and EEG/VER rigs used <em>only</em> for scientific validation — enters at later tiers. General slaughterhouse welfare-camera systems already exist (e.g. AI4Animals, Argus); StunAssure differs by being <em>fish-specific, low-cost, explainable, multimodal and expert-reviewed</em>.</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer" id="contact">
+  <div class="container">
+    <div class="footer-cta reveal">
+      <h2>Want the build detail?</h2>
+      <p>The roadmap breaks this into work packages and a realistic MVP plan; the Responsible AI page sets the boundaries we hold ourselves to.</p>
+      <a class="btn btn-primary" href="roadmap.html">See the roadmap
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+    <div class="footer-inner">
+      <div><div class="footer-brand"><span class="fmark" aria-hidden="true"><svg viewBox="0 0 36 36" fill="none"><rect x="1" y="1" width="34" height="34" rx="11" fill="#A8D5CF"/><path d="M10.5 16l4.2 4.2L24 10.8" stroke="#0D3B3E" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 24.5c2.7-2.9 5.6-2.9 8.3 0s5.6 2.9 8.3 0" stroke="#1F6F6D" stroke-width="2.2" stroke-linecap="round"/></svg></span> StunAssure</div><p class="disclaimer">A research-driven initiative exploring low-cost, explainable tools for fish-welfare risk management at slaughter. This site is supporting material; it is not a product offering or a guarantee of outcomes.</p></div>
+      <div class="footer-cols">
+        <div><h4>Project</h4><ul><li><a href="approach.html">Approach &amp; technology</a></li><li><a href="demo.html">Live demo</a></li><li><a href="architecture.html">Architecture</a></li><li><a href="hardware.html">Hardware design</a></li><li><a href="state-of-the-art.html">State of the art</a></li><li><a href="responsible-ai.html">Responsible AI</a></li></ul></div>
+        <div><h4>More</h4><ul><li><a href="team.html">Team</a></li><li><a href="team.html#contact">Collaborate</a></li><li><a href="state-of-the-art.html#references">References</a></li><li><a href="index.html">Responsible Systems Lab ↗</a></li></ul></div>
+      </div>
+    </div>
+    <div class="footer-bottom"><span>© 2026 StunAssure project team.</span><span>Practical · fail-safe · evidence-informed.</span></div>
+  </div>
+</footer>
+
+<script src="scripts/site.js"></script>
+</body>
+</html>

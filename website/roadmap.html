@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Roadmap — StunAssure</title>
+<meta name="description" content="StunAssure's work packages and a realistic MVP plan — what we build at 1, 3, and 6 months, starting narrow with one species in one controlled context." />
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2.5' y='2.5' width='27' height='27' rx='9' fill='none' stroke='%231F6F6D' stroke-width='1.6'/%3E%3Cpath d='M9 13.2l3.4 3.4L20 8.8' fill='none' stroke='%231F6F6D' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M8.5 21c2-2.2 4.5-2.2 6.5 0s4.5 2.2 6.5 0' fill='none' stroke='%233BAAA6' stroke-width='1.8' stroke-linecap='round'/%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles/site.css?v=20260619a" />
+<link rel="canonical" href="https://responsiblesystemslab.org/roadmap.html" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Responsible Systems Lab" />
+<meta property="og:title" content="Roadmap — StunAssure" />
+<meta property="og:description" content="StunAssure&#x27;s work packages and a realistic MVP plan — what we build at 1, 3, and 6 months, starting narrow with one species in one controlled context." />
+<meta property="og:url" content="https://responsiblesystemslab.org/roadmap.html" />
+<meta property="og:image" content="https://responsiblesystemslab.org/assets/og-stunassure.png" />
+<meta property="og:image:width" content="1200" /><meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Roadmap — StunAssure" />
+<meta name="twitter:description" content="StunAssure&#x27;s work packages and a realistic MVP plan — what we build at 1, 3, and 6 months, starting narrow with one species in one controlled context." />
+<meta name="twitter:image" content="https://responsiblesystemslab.org/assets/og-stunassure.png" />
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.6/dist/chart.umd.min.js" defer></script>
+<script src="scripts/sa-charts.js?v=20260702b" defer></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+ {"@type":"Organization","@id":"https://responsiblesystemslab.org/#org","name":"Responsible Systems Lab","url":"https://responsiblesystemslab.org/","email":"contact@responsiblesystemslab.org"},
+ {"@type":"ResearchProject","@id":"https://responsiblesystemslab.org/#stunassure","name":"StunAssure","url":"https://responsiblesystemslab.org/stunassure.html","parentOrganization":{"@id":"https://responsiblesystemslab.org/#org"},"description":"A low-cost, fail-safe verification and audit layer that documents whether electrical stunning worked on fish-processing lines."},
+ {"@type":"TechArticle","headline":"Roadmap — StunAssure","url":"https://responsiblesystemslab.org/roadmap.html","isPartOf":{"@id":"https://responsiblesystemslab.org/#stunassure"},"about":["MVP plan","technology readiness level","aquaculture pilot","milestones"],"publisher":{"@id":"https://responsiblesystemslab.org/#org"}}
+]}
+</script>
+</head>
+<body>
+
+<header class="site-header" id="header">
+  <div class="container nav">
+    <a class="brand" href="stunassure.html"><img src="assets/logo-primary.png" alt="StunAssure logo" /><span>StunAssure<small>Fish welfare assurance</small></span></a>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="stunassure.html">Home</a></li>
+        <li><a href="approach.html">Approach</a></li>
+        <li><a href="demo.html">Demo</a></li>
+        <li><a href="architecture.html">Architecture</a></li>
+        <li><a href="hardware.html">Hardware</a></li>
+        <li><a href="state-of-the-art.html">State of the art</a></li>
+        <li><a href="roadmap.html">Roadmap</a></li>
+        <li><a href="team.html">Team</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn-outline nav-cta" href="team.html#contact">Collaborate</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<main id="top">
+
+<section class="page-hero">
+  <div class="container">
+    <p class="crumbs reveal"><a href="stunassure.html">Home</a> / Roadmap</p>
+    <span class="eyebrow reveal">Roadmap</span>
+    <h1 class="reveal d1">Start <em>narrow</em>. Prove it. Then expand.</h1>
+    <p class="reveal d2">A realistic plan that begins with post-stun verification for one farmed species in one controlled context — buildable even with recorded video and simulated process data — and grows through validation toward a deployable platform.</p>
+  </div>
+</section>
+
+<section id="mvp">
+  <div class="container">
+    <div class="statement reveal">
+      <span class="eyebrow">First MVP scope</span>
+      <h2>One species. One context. <em>Real</em> evidence.</h2>
+      <p>Video-based post-stun risk flagging, with manual expert review and basic environmental/process logging — for a single farmed species (e.g. European sea bass, gilthead sea bream, or rainbow trout) in one controlled setting. Deliberately narrow, so it is achievable and verifiable within months.</p>
+    </div>
+  </div>
+</section>
+
+<section id="timeline" class="section-alt">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">MVP timeline</span>
+      <h2>What we build at 1, 3, and 6 months.</h2>
+    </div>
+    <ol class="timeline reveal">
+      <li><span class="dot"></span><div class="when">Month 1–2</div><h3>Map &amp; define</h3><p>State-of-the-art review, expert/advisor interviews, workflow mapping, target species, and a fail-safe welfare-indicator framework. Output: requirements + first species profile + pilot protocol.</p></li>
+      <li><span class="dot"></span><div class="when">Month 2–4</div><h3>Build Lite + Sensor Box prototype</h3><p>Offline app + dashboard, low-cost temperature/conductivity logging, batch audit report, and a simulated/recorded-data demo. Output: working MVP device + bill of materials.</p></li>
+      <li><span class="dot"></span><div class="when">Month 4–6</div><h3>Semi-field pilot</h3><p>Test with a realistic workflow, compare logs to manual observation, measure usability and operator burden, refine alert thresholds, and document cost per site. Output: pilot report.</p></li>
+      <li><span class="dot"></span><div class="when">Month 6–9+</div><h3>Optional camera assist &amp; validation</h3><p>Collect post-stun video, label visible failure/recovery signs, train a conservative edge model, and design the expert-validation protocol. Output: camera-assist prototype + validation plan.</p></li>
+    </ol>
+    <figure class="sa-fig reveal">
+      <h3>The 12-month plan at a glance</h3>
+      <p class="sa-sub">Overlapping phases — build starts before mapping fully ends; the pilot overlaps build; camera/validation is a later, optional track.</p>
+      <div class="sa-box"><canvas class="sa-canvas" data-chart="timeline" aria-label="Gantt chart of the four project phases across twelve months"></canvas></div>
+      <figcaption>Phase 1 map (mo 1–2) → Phase 2 build (mo 2–4) → Phase 3 semi-field pilot (mo 4–6) → Phase 4 optional camera/validation (mo 6–9+). Matches the milestone list above.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section id="work-packages">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Work packages</span>
+      <h2>How the work is organized.</h2>
+    </div>
+    <div class="layers">
+      <div class="layer reveal"><h3>WP1 — State of the art &amp; requirements</h3><p>Review standards &amp; literature, pick target species, define indicators and what the system can/cannot claim, advisor review. → SOTA report + requirements.</p></div>
+      <div class="layer reveal d1"><h3>WP2 — Welfare indicator framework</h3><p>Specify the Welfare Risk Index across visual, process, environmental, operational signals + expert review. → risk-index specification.</p></div>
+      <div class="layer reveal d2"><h3>WP3 — Data acquisition prototype</h3><p>Camera + sensor inputs, timestamp synchronization, batch/event logging, local storage, basic dashboard. → working MVP device.</p></div>
+      <div class="layer reveal d3"><h3>WP4 — AI risk detection</h3><p>Detection, tracking, motion/anomaly analysis, multimodal classifier, uncertainty score → human review. → risk-detection prototype.</p></div>
+      <div class="layer reveal"><h3>WP5 — Dashboard &amp; reporting</h3><p>Live view, alerts, batch history, annotated clips, corrective-action log, exportable reports, advisor review panel. → web application.</p></div>
+      <div class="layer reveal d1"><h3>WP6 — Pilot validation &amp; business model</h3><p>Validate anomaly detection, missed-event reduction, usability, audit value, and affordability. → pilot report + business case.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- BUILD MATURITY / TRL -->
+<section id="maturity" class="section-alt">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Build maturity</span>
+      <h2>How we de-risk — from simulation to a real facility.</h2>
+      <p>Each stage proves something concrete before the next gets expensive. The software pipeline is buildable now on simulated and recorded data; capital hardware only enters once the value is demonstrated.</p>
+    </div>
+    <div class="tbl-wrap reveal">
+      <table class="dtable">
+        <caption>EEG / VER equipment appears only at the pilot stage, used for scientific validation with experts — never as a routine production component.</caption>
+        <thead>
+          <tr><th scope="col">Stage</th><th scope="col">Focus</th><th scope="col">Hardware</th><th scope="col">Software / AI</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">0 — Desk &amp; simulation</th><td>Proposal, state-of-the-art, mock dashboard, indicator framework</td><td>Laptop; phone/webcam for demo</td><td>Python · OpenCV · Streamlit/Next.js · SQLite · Label Studio</td></tr>
+          <tr><th scope="row">1 — Low-cost MVP</th><td>Prove video + sensor capture → simple alerts</td><td>Raspberry Pi 5 / Jetson Nano · ESP32 · temp/EC/pH/DO/turbidity</td><td>YOLOv8/v11 · MQTT · TimescaleDB · FastAPI · Grafana · Docker</td></tr>
+          <tr><th scope="row">2 — Research prototype</th><td>Stronger multimodal AI + expert validation</td><td>Multi-camera · industrial cam · LED lighting · Jetson Orin NX</td><td>Tracking · pose estimation · time-series ML · fusion · MLflow/DVC</td></tr>
+          <tr><th scope="row">3 — Facility pilot</th><td>Real workflow, audit trail, usability</td><td>IP67/68 enclosures · PoE cameras · edge server · UPS · tablet · <em>optional</em> EEG/VER</td><td>Species config · out-of-range alerts · audit trail · human-vs-AI comparison</td></tr>
+          <tr><th scope="row">4 — Platform</th><td>Scale-out product</td><td>—</td><td>Edge · Cloud · API · Dataset · Certification Pack</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout reveal">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01" stroke-linecap="round"/></svg>
+      <p><strong>Realistic starting point.</strong> The Lite tier (checklist app, stun→kill timer, species SOPs, manual logs) and the data pipeline are buildable today; the camera-assist and validation tiers are research goals, gated on the pilot evidence. See the <a href="approach.html#tiers">deployment &amp; cost tiers</a> and the <a href="state-of-the-art.html">open research questions</a> they answer.</p>
+    </div>
+    <figure class="sa-fig reveal">
+      <h3>Technology-readiness trajectory</h3>
+      <p class="sa-sub">TRL 2–3 today → 4–5 within 12 months via bench + simulated line data + a limited pilot.</p>
+      <div class="sa-box"><canvas class="sa-canvas" data-chart="trl" aria-label="Line chart of technology readiness level rising from 2.5 to 5 over twelve months"></canvas></div>
+      <figcaption>Components are mature; integration is the work — a near-term effort, not a decade-long research programme. <strong>Projected trajectory</strong>; endpoints (TRL 2–3→4–5) are our estimate, intermediate points interpolated.</figcaption>
+    </figure>
+    <figure class="sa-fig reveal">
+      <h3>Scale path to &gt;1 billion fish</h3>
+      <p class="sa-sub">Verification is a layer over the 100B+ fish already slaughtered — the &gt;1B "excellent" ceiling is reachable. Log scale (fish/yr).</p>
+      <div class="sa-box"><canvas class="sa-canvas" data-chart="scalePath" aria-label="Stepped scale from pilot to EU retrofit to species expansion over one billion fish per year"></canvas></div>
+      <figcaption>Pilot 10k–100k → EU finfish retrofit (millions) → species-profile expansion (&gt;1B). <strong>Illustrative adoption projection, not measured data</strong>; only the pilot figure is committed.</figcaption>
+    </figure>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer" id="contact">
+  <div class="container">
+    <div class="footer-cta reveal">
+      <h2>Want to pilot with us?</h2>
+      <p>If you run or study a farm or processing facility — especially for sea bass, sea bream, or trout — a small pilot is exactly what we're looking for.</p>
+      <a class="btn btn-primary" href="mailto:contact@responsiblesystemslab.org">Get in touch
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16v12H4z M4 7l8 6 8-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+    <div class="footer-inner">
+      <div><div class="footer-brand"><span class="fmark" aria-hidden="true"><svg viewBox="0 0 36 36" fill="none"><rect x="1" y="1" width="34" height="34" rx="11" fill="#A8D5CF"/><path d="M10.5 16l4.2 4.2L24 10.8" stroke="#0D3B3E" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 24.5c2.7-2.9 5.6-2.9 8.3 0s5.6 2.9 8.3 0" stroke="#1F6F6D" stroke-width="2.2" stroke-linecap="round"/></svg></span> StunAssure</div><p class="disclaimer">A research-driven initiative exploring low-cost, explainable tools for fish-welfare risk management at slaughter. This site is supporting material; it is not a product offering or a guarantee of outcomes.</p></div>
+      <div class="footer-cols">
+        <div><h4>Project</h4><ul><li><a href="approach.html">Approach &amp; technology</a></li><li><a href="demo.html">Live demo</a></li><li><a href="architecture.html">Architecture</a></li><li><a href="hardware.html">Hardware design</a></li><li><a href="state-of-the-art.html">State of the art</a></li><li><a href="responsible-ai.html">Responsible AI</a></li></ul></div>
+        <div><h4>More</h4><ul><li><a href="team.html">Team</a></li><li><a href="team.html#contact">Collaborate</a></li><li><a href="state-of-the-art.html#references">References</a></li><li><a href="index.html">Responsible Systems Lab ↗</a></li></ul></div>
+      </div>
+    </div>
+    <div class="footer-bottom"><span>© 2026 StunAssure project team.</span><span>Practical · fail-safe · evidence-informed.</span></div>
+  </div>
+</footer>
+
+<script src="scripts/site.js"></script>
+</body>
+</html>
